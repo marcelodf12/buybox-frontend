@@ -23,6 +23,13 @@ import { LoggerModule } from 'ngx-logger';
 
 import { environment } from 'src/environments/environment';
 import {HttpClientModule} from '@angular/common/http';
+import { RecepcionComponent } from './page/recepcion/recepcion.component';
+import { PaqueteComponent } from './page/paquete/paquete.component';
+import { ClientesComponent } from './page/clientes/clientes.component';
+import { ProductosComponent } from './page/productos/productos.component';
+import { DestinosComponent } from './page/destinos/destinos.component';
+import { ReportesComponent } from './page/reportes/reportes.component';
+import { UsuariosComponent } from './page/usuarios/usuarios.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +38,14 @@ import {HttpClientModule} from '@angular/common/http';
     LoginComponent,
     HomeComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    RecepcionComponent,
+    PaqueteComponent,
+    ClientesComponent,
+    ProductosComponent,
+    DestinosComponent,
+    ReportesComponent,
+    UsuariosComponent
   ],
   imports: [
     BrowserModule,

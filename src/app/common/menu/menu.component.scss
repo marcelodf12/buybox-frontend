@@ -1,3 +1,5 @@
+@import '~src/buybox-theming';
+
 :host {
   .mat-icon {
     vertical-align: middle;
@@ -13,4 +15,20 @@
       border-radius: 50%;
     }
   }
+  .list-item-active{
+    background-color: mat-color($tracking-system-primary, 500, 0.95) !important;
+    color: mat-color($tracking-system-primary, A100) !important;
+  }
+  mat-nav-list {
+    padding: 10px;
+  }
+
+  a.list-item-active {
+    border-radius: 5px;
+    -webkit-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.5);
+    box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.5);
+  }
 }
+
+
