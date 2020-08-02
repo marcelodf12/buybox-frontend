@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "tracking-system"
+    }
+  },
+  "defaultProject": "tracking-system",
+  "cli": {
+    "analytics": "f0e6dbda-471e-4ad5-ab02-c5a1ddfb811d"
+  }
 }
