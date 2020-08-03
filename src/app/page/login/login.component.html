@@ -1,1 +1,29 @@
-<p>login works!</p>
+<div fxFill fxLayout="row" fxLayoutAlign="space-around center" class="login-container">
+  <mat-card class="login-card">
+    <mat-card-header fxFill fxLayout="column" fxLayoutAlign="space-around center">
+      <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+      <img *ngIf="!showSpinner" src="assets/img/buybox-logo.png" class="logo-login">
+      <h2 class="title-login">Bienvenido</h2>
+    </mat-card-header>
+    <mat-card-content fxFill fxLayout="column" fxLayoutAlign="space-around center">
+      <form class="login-form">
+        <div fxFill fxLayout="column" fxLayoutAlign="space-between center" >
+          <mat-form-field class="login-full-width">
+            <input matInput placeholder="Usuario" [(ngModel)]="username" name="username" required>
+            <mat-icon matSuffix>person</mat-icon>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Contraseña</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" required [(ngModel)]="password">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Ocultar contraseña'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+      </form>
+      <button [disabled]="showSpinner" mat-raised-button (click)="login()" color="primary" class="login-btn-entrar">Entrar</button>
+    </mat-card-content>
+    <mat-card-actions>
+    </mat-card-actions>
+  </mat-card>
+</div>

@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {NGXLogger} from 'ngx-logger';
+import {LoginService} from './services/login.service';
 
 @Component({
   selector: 'app-root',
@@ -9,8 +10,16 @@ import {NGXLogger} from 'ngx-logger';
 export class AppComponent implements OnInit {
 
   sideBarOpen = true;
+  estaAutenticado: boolean;
 
-  constructor(private logger: NGXLogger) { }
+  constructor(
+    private logger: NGXLogger,
+    private loginService: LoginService
+  ) {
+    loginService.estaAutenticadoSubject().subscribe((data) => {
+      this.estaAutenticado = data;
+    });
+  }
 
   ngOnInit(): void { }
 

@@ -1,0 +1,32 @@
+@import '~src/buybox-theming';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url("~src/assets/img/login-back.jpg");
+}
+
+.login-card {
+  max-width: 300px;
+  min-width: 300px;
+  min-height: 40%;
+
+}
+
+.logo-login{
+  max-width: 150px;
+  margin-top: 5px;
+}
+
+.title-login{
+  margin-top: 5px;
+  margin-bottom: 5px;
+  color: mat-color($tracking-system-primary);
+}
+
+.login-btn-entrar {
+  margin-top: 15px;
+  margin-bottom: 5px;
+  min-width: 150px;
+}

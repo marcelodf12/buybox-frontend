@@ -1,6 +1,6 @@
-<app-header (toggleSideBarForMe)="sideBarToggler($event)"></app-header>
+<app-header (toggleSideBarForMe)="sideBarToggler($event)" *ngIf="estaAutenticado"></app-header>
 
-<mat-sidenav-container>
+<mat-sidenav-container *ngIf="estaAutenticado">
   <mat-sidenav mode="side" [opened]="sideBarOpen">
     <app-menu></app-menu>
   </mat-sidenav>
@@ -9,5 +9,6 @@
   </mat-sidenav-content>
 </mat-sidenav-container>
 
-<app-footer></app-footer>
+<app-footer *ngIf="estaAutenticado"></app-footer>
 
+<app-login *ngIf="!estaAutenticado"></app-login>

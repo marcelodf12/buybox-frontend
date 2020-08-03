@@ -30,6 +30,11 @@ import { ProductosComponent } from './page/productos/productos.component';
 import { DestinosComponent } from './page/destinos/destinos.component';
 import { ReportesComponent } from './page/reportes/reportes.component';
 import { UsuariosComponent } from './page/usuarios/usuarios.component';
+import {MatCardModule} from '@angular/material/card';
+import {MatInputModule} from '@angular/material/input';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {FormsModule} from '@angular/forms';
+import {LoginService} from './services/login.service';
 
 @NgModule({
   declarations: [
@@ -63,9 +68,13 @@ import { UsuariosComponent } from './page/usuarios/usuarios.component';
     LoggerModule.forRoot({
       level: environment.logLevel,
       disableConsoleLogging: false
-    })
+    }),
+    MatCardModule,
+    MatInputModule,
+    MatProgressSpinnerModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

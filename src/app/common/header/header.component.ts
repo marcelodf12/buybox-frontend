@@ -1,5 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {NGXLogger} from 'ngx-logger';
+import {LoginService} from '../../services/login.service';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +11,10 @@ export class HeaderComponent implements OnInit {
 
   @Output() toggleSideBarForMe: EventEmitter<any> = new EventEmitter();
 
-  constructor(private logger: NGXLogger) { }
+  constructor(
+    private logger: NGXLogger,
+    private loginService: LoginService
+  ) { }
 
   ngOnInit(): void {
   }
@@ -25,4 +29,7 @@ export class HeaderComponent implements OnInit {
     }, 300);
   }
 
+  salir(): void {
+    this.loginService.salir();
+  }
 }
