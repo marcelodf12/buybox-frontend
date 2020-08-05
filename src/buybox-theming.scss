@@ -15,7 +15,8 @@
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
 $tracking-system-primary: mat-palette($md-bb-red);
-$tracking-system-accent: mat-palette($md-bb-blue, A200, A100, A400);
+$tracking-system-accent: mat-palette($md-bb-blue, 500, A100, A400);
+$tracking-system-success: mat-palette($md-bb-green);
 
 // The warn palette is optional (defaults to red).
 $tracking-system-warn: mat-palette($md-bb-yellow);
@@ -26,7 +27,7 @@ $tracking-system-theme: mat-light-theme((
   color: (
     primary: $tracking-system-primary,
     accent: $tracking-system-accent,
-    warn: $tracking-system-warn,
+    warn: $tracking-system-warn
   )
 ));
 
