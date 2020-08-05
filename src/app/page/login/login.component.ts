@@ -1,4 +1,4 @@
-import {Component, OnInit, Output} from '@angular/core';
+import {Component, OnInit, Output, AfterContentInit} from '@angular/core';
 import {LoginService} from '../../services/login.service';
 
 @Component({
@@ -6,7 +6,7 @@ import {LoginService} from '../../services/login.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, AfterContentInit {
 
   username: string;
   password: string;
@@ -18,13 +18,21 @@ export class LoginComponent implements OnInit {
   ) {
     this.hide = true;
     this.showSpinner = false;
+
   }
 
   ngOnInit(): void {
-    //this.loginService.autenticar(this.username, this.password); // Esto hay que borrar
+
   }
 
   login(): void {
     this.loginService.autenticar(this.username, this.password);
   }
+
+  ngAfterContentInit(): void {
+    setTimeout(() => {
+      this.loginService.autenticar(this.username, this.password);
+    }, 0);
+  }
+
 }

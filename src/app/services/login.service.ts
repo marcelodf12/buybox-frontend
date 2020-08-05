@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
+import {Injectable, OnInit} from '@angular/core';
 import {BehaviorSubject, Subject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class LoginService{
 
   autenticado: Subject<boolean>;
 

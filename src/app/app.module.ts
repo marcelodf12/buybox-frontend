@@ -35,6 +35,10 @@ import {MatInputModule} from '@angular/material/input';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {FormsModule} from '@angular/forms';
 import {LoginService} from './services/login.service';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -72,9 +76,13 @@ import {LoginService} from './services/login.service';
     MatCardModule,
     MatInputModule,
     MatProgressSpinnerModule,
-    FormsModule
+    FormsModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
-  providers: [LoginService],
+  providers: [LoginService, MatDatepickerModule, MatNativeDateModule ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
