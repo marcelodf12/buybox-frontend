@@ -15,4 +15,7 @@ export class MenuComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  salir(): void {
+    this.loginService.salir();
+  }
 }
