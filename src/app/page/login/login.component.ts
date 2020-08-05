@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    //this.loginService.autenticar(this.username, this.password); // Esto hay que borrar
   }
 
   login(): void {
