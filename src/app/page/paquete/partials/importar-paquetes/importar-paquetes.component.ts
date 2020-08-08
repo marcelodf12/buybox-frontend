@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { faFileExcel } from '@fortawesome/free-solid-svg-icons';
 import {Producto} from '../../../../interface/producto.interface';
+import {FormControl, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-importar-paquetes',
@@ -12,8 +13,12 @@ export class ImportarPaquetesComponent implements OnInit {
   displayedColumns: string[];
   faFileExcel: any = faFileExcel;
   archivo: any;
+  formArchivo: FormGroup;
 
   constructor() {
+    this.formArchivo = new FormGroup({
+      archivo: new FormControl()
+    });
     this.displayedColumns = ['casilla', 'trackPaquete', 'trackProveedor', 'estadoImportado'];
     this.dummySource = [
       { casilla: 'BYB0001', cliente: 'string', trackPaquete: 'string', trackProveedor: 'string', estadoImportado: 0},

@@ -1,11 +1,10 @@
 <h2 mat-dialog-title>Alta masiva de paquetes</h2>
 <mat-dialog-content class="mat-typography" fxFill fxLayout="column">
-  <form fxLayout="row" fxLayoutAlign="space-evenly end" >
+  <form [formGroup]="formArchivo" fxLayout="row" fxLayoutAlign="space-evenly end" >
     <mat-form-field fxFlex="79">
       <ngx-mat-file-input #removableInput
-                          formControlName="removablefile"
+                          formControlName="archivo"
                           placeholder="Archivo Excel"
-                          [(ngModel)]="archivo"
                           [accept]="['application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet']"
       ></ngx-mat-file-input>
       <button mat-icon-button matSuffix *ngIf="!removableInput.empty" (click)="removableInput.clear($event)">

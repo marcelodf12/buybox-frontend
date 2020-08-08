@@ -3,45 +3,45 @@
     <mat-card-title>Buscar</mat-card-title>
   </mat-card-header>
   <mat-card-content class="card-body">
-    <form>
+    <form [formGroup]="filtro">
       <span fxFill fxLayout="row" fxLayoutAlign="space-between end">
         <mat-form-field fxFlex="24">
           <mat-label>Tracking Paquete</mat-label>
-          <input matInput name="trackPaquete" [(ngModel)]="filro.trackPaquete">
+          <input matInput name="trackPaquete">
         </mat-form-field>
 
         <mat-form-field fxFlex="24">
           <mat-label>Tracking Proveedor</mat-label>
-          <input matInput name="trackProveedor" [(ngModel)]="filro.trackProveedor">
+          <input matInput name="trackProveedor">
         </mat-form-field>
 
         <mat-form-field fxFlex="24" appearance="fill" class="white-background">
           <mat-label>Ingreso desde</mat-label>
-          <input matInput [matDatepicker]="pickerDesde" name="ingresoDesde" [(ngModel)]="filro.ingresoDesde">
+          <input matInput [matDatepicker]="pickerDesde" name="ingresoDesde">
           <mat-datepicker-toggle matSuffix [for]="pickerDesde"></mat-datepicker-toggle>
           <mat-datepicker #pickerDesde></mat-datepicker>
         </mat-form-field>
 
         <mat-form-field fxFlex="24">
           <mat-label>Destino</mat-label>
-          <input matInput name="destino" [(ngModel)]="filro.destino">
+          <input matInput name="destino">
         </mat-form-field>
       </span>
 
       <span fxFill fxLayout="row" fxLayoutAlign="space-between end">
         <mat-form-field fxFlex="24">
           <mat-label>Vuelo</mat-label>
-          <input matInput name="vuelo" [(ngModel)]="filro.vuelo">
+          <input matInput name="vuelo">
         </mat-form-field>
 
         <mat-form-field fxFlex="24">
           <mat-label>Casilla</mat-label>
-          <input matInput name="casilla" [(ngModel)]="filro.casilla">
+          <input matInput name="casilla">
         </mat-form-field>
 
         <mat-form-field fxFlex="24" appearance="fill" class="white-background">
           <mat-label>Ingreso hasta</mat-label>
-          <input matInput [matDatepicker]="pickerHasta" name="ingresoHasta" [(ngModel)]="filro.ingresoHasta">
+          <input matInput [matDatepicker]="pickerHasta" name="ingresoHasta">
           <mat-datepicker-toggle matSuffix [for]="pickerHasta"></mat-datepicker-toggle>
           <mat-datepicker #pickerHasta></mat-datepicker>
         </mat-form-field>

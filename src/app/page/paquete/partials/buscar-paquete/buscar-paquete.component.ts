@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {NGXLogger} from 'ngx-logger';
+import {FormControl, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-buscar-paquete',
@@ -8,18 +9,18 @@ import {NGXLogger} from 'ngx-logger';
 })
 export class BuscarPaqueteComponent implements OnInit {
 
-  filro: any;
+  filtro: FormGroup;
 
   constructor(private logger: NGXLogger) {
-    this.filro = {
-      trackPaquete: '',
-      trackProveedor: '',
-      ingresoDesde: '',
-      ingresoHasta: '',
-      casilla: '',
-      vuelo: '',
-      destino: ''
-    };
+    this.filtro = new FormGroup({
+      ingresoHasta: new FormControl(),
+      ingresoDesde: new FormControl(),
+      casilla: new FormControl(),
+      vuelo: new FormControl(),
+      destino: new FormControl(),
+      trackProveedor: new FormControl(),
+      trackPaquete: new FormControl()
+    });
   }
 
   ngOnInit(): void {
