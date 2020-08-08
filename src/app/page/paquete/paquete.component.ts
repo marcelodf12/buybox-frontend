@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
+import { faFileExcel } from '@fortawesome/free-solid-svg-icons';
+
 import { Producto } from '../../interface/producto.interface';
 import {NGXLogger} from 'ngx-logger';
+import {MatDialog} from '@angular/material/dialog';
+import {ImportarPaquetesComponent} from './partials/importar-paquetes/importar-paquetes.component';
 
 @Component({
   selector: 'app-paquete',
@@ -9,41 +13,27 @@ import {NGXLogger} from 'ngx-logger';
   styleUrls: ['./paquete.component.scss']
 })
 export class PaqueteComponent implements OnInit {
-  dummySource: Producto[];
-  displayedColumns: string[];
-  filro: any;
+
+  faFileExcel: any = faFileExcel;
 
   constructor(
     private logger: NGXLogger,
+    public dialog: MatDialog
   ) {
-    this.displayedColumns = ['casilla', 'cliente', 'trackPaquete', 'trackProveedor','ingreso','destino'];
-    this.dummySource = [
-      { casilla: 'BYB0001', cliente: 'string', trackPaquete: 'string', trackProveedor: 'string', ingreso: 'string', destino: 'string'},
-      { casilla: 'BYB0002', cliente: 'string', trackPaquete: 'string', trackProveedor: 'string', ingreso: 'string', destino: 'string'},
-      { casilla: 'BYB0003', cliente: 'string', trackPaquete: 'string', trackProveedor: 'string', ingreso: 'string', destino: 'string'},
-      { casilla: 'BYB0004', cliente: 'string', trackPaquete: 'string', trackProveedor: 'string', ingreso: 'string', destino: 'string'},
-      { casilla: 'BYB0005', cliente: 'string', trackPaquete: 'string', trackProveedor: 'string', ingreso: 'string', destino: 'string'},
-      { casilla: 'BYB0006', cliente: 'string', trackPaquete: 'string', trackProveedor: 'string', ingreso: 'string', destino: 'string'},
-      { casilla: 'BYB0007', cliente: 'string', trackPaquete: 'string', trackProveedor: 'string', ingreso: 'string', destino: 'string'},
-      { casilla: 'BYB0008', cliente: 'string', trackPaquete: 'string', trackProveedor: 'string', ingreso: 'string', destino: 'string'},
-      { casilla: 'BYB0009', cliente: 'string', trackPaquete: 'string', trackProveedor: 'string', ingreso: 'string', destino: 'string'},
-      { casilla: 'BYB0010', cliente: 'string', trackPaquete: 'string', trackProveedor: 'string', ingreso: 'string', destino: 'string'}
-    ];
-    this.filro = {
-      trackPaquete: '',
-      trackProveedor: '',
-      ingresoDesde: '',
-      ingresoHasta: '',
-      casilla: '',
-      vuelo: '',
-      destino: ''
-    };
+
   }
 
   ngOnInit(): void {
   }
 
-  buscar(): void {
-    this.logger.debug('Ejecutando buscar');
+  doAction(trigger: string): void {
+    this.logger.debug('Ejecutando acción de botón FAB');
+    if (trigger === 'excel'){
+      this.dialog.open(ImportarPaquetesComponent,{
+        closeOnNavigation: false,
+        disableClose: true,
+        minWidth: '80%'
+      });
+    }
   }
 }

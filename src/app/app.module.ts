@@ -33,12 +33,19 @@ import { UsuariosComponent } from './page/usuarios/usuarios.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {LoginService} from './services/login.service';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
+import {EcoFabSpeedDialModule} from '@ecodev/fab-speed-dial';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { BuscarPaqueteComponent } from './page/paquete/partials/buscar-paquete/buscar-paquete.component';
+import { ResultadoPaqueteComponent } from './page/paquete/partials/resultado-paquete/resultado-paquete.component';
+import { ImportarPaquetesComponent } from './page/paquete/partials/importar-paquetes/importar-paquetes.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MaterialFileInputModule} from 'ngx-material-file-input';
 
 @NgModule({
   declarations: [
@@ -54,7 +61,10 @@ import {MatNativeDateModule} from '@angular/material/core';
     ProductosComponent,
     DestinosComponent,
     ReportesComponent,
-    UsuariosComponent
+    UsuariosComponent,
+    BuscarPaqueteComponent,
+    ResultadoPaqueteComponent,
+    ImportarPaquetesComponent
   ],
   imports: [
     BrowserModule,
@@ -76,11 +86,16 @@ import {MatNativeDateModule} from '@angular/material/core';
     MatCardModule,
     MatInputModule,
     MatProgressSpinnerModule,
+    MatDialogModule,
     FormsModule,
     MatTableModule,
     MatPaginatorModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    EcoFabSpeedDialModule,
+    FontAwesomeModule,
+    MaterialFileInputModule,
+    ReactiveFormsModule
   ],
   providers: [LoginService, MatDatepickerModule, MatNativeDateModule ],
   bootstrap: [AppComponent]

@@ -1,2 +1,46 @@
 @import "./buybox-theming";
 
+.mat-icon.mat-success{
+  color: mat-color($tracking-system-success);
+}
+
+.card.mat-card {
+  padding: 0px;
+}
+
+.card-body.mat-card-content {
+  margin: 16px;
+}
+
+.card-header.mat-card-header {
+  padding: 16px;
+  border-radius: 4px 4px 0px 0px;
+  color: white;
+}
+
+.primary.mat-card-header {
+  background-color: mat-color($tracking-system-primary);
+}
+
+.card-header.mat-card-header mat-card-title {
+  margin: 0px;
+}
+
+.fab{
+  right: 20px;
+  bottom: 25px;
+  position: fixed !important;
+}
+
+.w-50{
+  max-width: 50px;
+}
+
+.w-75{
+  max-width: 75px;
+}
+
+.w-100{
+  max-width: 100px;
+}
+

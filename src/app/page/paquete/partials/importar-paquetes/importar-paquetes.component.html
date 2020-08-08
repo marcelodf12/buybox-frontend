@@ -1,0 +1,63 @@
+<h2 mat-dialog-title>Alta masiva de paquetes</h2>
+<mat-dialog-content class="mat-typography" fxFill fxLayout="column">
+  <form fxLayout="row" fxLayoutAlign="space-evenly end" >
+    <mat-form-field fxFlex="79">
+      <ngx-mat-file-input #removableInput
+                          formControlName="removablefile"
+                          placeholder="Archivo Excel"
+                          [(ngModel)]="archivo"
+                          [accept]="['application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet']"
+      ></ngx-mat-file-input>
+      <button mat-icon-button matSuffix *ngIf="!removableInput.empty" (click)="removableInput.clear($event)">
+        <mat-icon>clear</mat-icon>
+      </button>
+      <button mat-icon-button matSuffix *ngIf="removableInput.empty">
+        <fa-icon [icon]="faFileExcel"></fa-icon>
+      </button>
+    </mat-form-field>
+    <button fxFlex="19" mat-raised-button class="btn-procesar" color="accent">Analizar</button>
+  </form>
+  <table fxFill mat-table [dataSource]="dummySource">
+    <!-- casilla Column -->
+    <ng-container matColumnDef="casilla">
+      <mat-header-cell *matHeaderCellDef [ngClass]="'w-75'"> Casilla </mat-header-cell>
+      <mat-cell *matCellDef="let element" [ngClass]="'w-75'"> {{element.casilla}} </mat-cell>
+    </ng-container>
+
+    <!-- casilla Proveedor -->
+    <ng-container matColumnDef="trackProveedor">
+      <mat-header-cell *matHeaderCellDef> Proveedor </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.trackProveedor}} </mat-cell>
+    </ng-container>
+
+    <!-- casilla Tracking -->
+    <ng-container matColumnDef="trackPaquete">
+      <mat-header-cell *matHeaderCellDef> Tracking </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.trackPaquete}} </mat-cell>
+    </ng-container>
+
+    <!-- casilla estadoImportado -->
+    <ng-container matColumnDef="estadoImportado">
+      <mat-header-cell *matHeaderCellDef [ngClass]="'w-50'"> Estado </mat-header-cell>
+      <mat-cell *matCellDef="let element" [ngClass]="'w-50'">
+        <mat-icon *ngIf="element.estadoImportado===-1" color="primary">error</mat-icon>
+        <mat-icon *ngIf="element.estadoImportado===0" color="warn">backup</mat-icon>
+        <mat-icon *ngIf="element.estadoImportado===1" color="success">check_circle</mat-icon>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">Seleccione el archivo para importar los datos</td>
+    </tr>
+
+  </table>
+
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button color="accent" cdkFocusInitial><mat-icon>publish</mat-icon> Sincronizar</button>
+</mat-dialog-actions>

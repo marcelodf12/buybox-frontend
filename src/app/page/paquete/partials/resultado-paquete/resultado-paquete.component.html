@@ -1,0 +1,57 @@
+<mat-card class="card">
+  <mat-card-header class="card-header primary">
+    <mat-card-title>Resultados</mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="card-body">
+    <table mat-table fxFill [dataSource]="dummySource">
+      <!-- casilla Column -->
+      <ng-container matColumnDef="casilla">
+        <mat-header-cell *matHeaderCellDef [ngClass]="'w-75'"> Casilla </mat-header-cell>
+        <mat-cell *matCellDef="let element" [ngClass]="'w-75'"> {{element.casilla}} </mat-cell>
+      </ng-container>
+
+      <!-- cliente Column -->
+      <ng-container matColumnDef="cliente">
+        <mat-header-cell *matHeaderCellDef> Cliente </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.cliente}} </mat-cell>
+      </ng-container>
+
+      <!-- trackPaquete Column -->
+      <ng-container matColumnDef="trackPaquete">
+        <mat-header-cell *matHeaderCellDef> Tracking Paquete </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.trackPaquete}} </mat-cell>
+      </ng-container>
+
+      <!-- trackProveedor Column -->
+      <ng-container matColumnDef="trackProveedor">
+        <mat-header-cell *matHeaderCellDef> Tracking Proveedor </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.trackProveedor}} </mat-cell>
+      </ng-container>
+
+      <!-- ingreso Column -->
+      <ng-container matColumnDef="ingreso">
+        <mat-header-cell *matHeaderCellDef [ngClass]="'w-100'"> Ingreso </mat-header-cell>
+        <mat-cell *matCellDef="let element" [ngClass]="'w-100'"> {{element.ingreso}} </mat-cell>
+      </ng-container>
+
+      <!-- destino Column -->
+      <ng-container matColumnDef="destino">
+        <mat-header-cell *matHeaderCellDef> Destino </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.destino}} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">Su búsqueda no arrojó resultados</td>
+      </tr>
+
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </mat-card-content>
+  <mat-card-actions>
+
+  </mat-card-actions>
+</mat-card>
