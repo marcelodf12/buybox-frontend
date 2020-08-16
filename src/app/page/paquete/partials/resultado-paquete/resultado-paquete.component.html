@@ -11,27 +11,27 @@
       </ng-container>
 
       <!-- cliente Column -->
-      <ng-container matColumnDef="cliente">
+      <ng-container matColumnDef="clienteNombreApellido">
         <mat-header-cell *matHeaderCellDef> Cliente </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.cliente}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.clienteNombreApellido}} </mat-cell>
       </ng-container>
 
       <!-- trackPaquete Column -->
-      <ng-container matColumnDef="trackPaquete">
+      <ng-container matColumnDef="numeroTracking">
         <mat-header-cell *matHeaderCellDef> Tracking Paquete </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.trackPaquete}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.numeroTracking}} </mat-cell>
       </ng-container>
 
       <!-- trackProveedor Column -->
-      <ng-container matColumnDef="trackProveedor">
+      <ng-container matColumnDef="codigoExterno">
         <mat-header-cell *matHeaderCellDef> Tracking Proveedor </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.trackProveedor}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.codigoExterno}} </mat-cell>
       </ng-container>
 
       <!-- ingreso Column -->
       <ng-container matColumnDef="ingreso">
         <mat-header-cell *matHeaderCellDef [ngClass]="'w-100'"> Ingreso </mat-header-cell>
-        <mat-cell *matCellDef="let element" [ngClass]="'w-100'"> {{element.ingreso}} </mat-cell>
+        <mat-cell *matCellDef="let element" [ngClass]="'w-100'"> {{element.ingreso|date:'shortDate'}} </mat-cell>
       </ng-container>
 
       <!-- destino Column -->
@@ -49,7 +49,7 @@
       </tr>
 
     </table>
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    <mat-paginator [pageSizeOptions]="pageSizeOptions" showFirstLastButtons></mat-paginator>
   </mat-card-content>
   <mat-card-actions>
 

@@ -16,7 +16,7 @@
     }
   }
   .list-item-active{
-    background-color: mat-color($tracking-system-primary, 500, 0.95) !important;
+    background-color: mat-color($tracking-system-primary, 500, 1) !important;
     color: mat-color($tracking-system-primary, A100) !important;
   }
   mat-nav-list {

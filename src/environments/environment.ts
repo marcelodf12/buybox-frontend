@@ -6,7 +6,7 @@ import {NgxLoggerLevel} from 'ngx-logger';
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:8080/', // Reemplazar con API local
+  apiUrl: 'http://localhost:8080/buybox-backend', // Reemplazar con API local
   logLevel: NgxLoggerLevel.DEBUG,
   serverLogLevel: NgxLoggerLevel.OFF
 };

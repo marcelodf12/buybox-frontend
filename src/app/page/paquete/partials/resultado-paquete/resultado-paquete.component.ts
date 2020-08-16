@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {Producto} from '../../../../interface/producto.interface';
 import {NGXLogger} from 'ngx-logger';
+import {PAGE_SIZE_OPTIONS} from '../../../../common/constants';
+import {PaqueteService} from '../../../../services/paquete.service';
+import {Paquete} from '../../../../common/models/paquete.model';
 
 @Component({
   selector: 'app-resultado-paquete',
@@ -9,26 +12,30 @@ import {NGXLogger} from 'ngx-logger';
 })
 export class ResultadoPaqueteComponent implements OnInit {
 
-  dummySource: Producto[];
+  dummySource: Paquete[];
   displayedColumns: string[];
+  pageSizeOptions: number[] = PAGE_SIZE_OPTIONS;
 
   constructor(
     private logger: NGXLogger,
+    private paqueteService: PaqueteService,
   ) {
-    this.displayedColumns = ['casilla', 'cliente', 'trackPaquete', 'trackProveedor', 'ingreso', 'destino'];
-    this.dummySource = [
-      { casilla: 'BYB0001', cliente: 'string', trackPaquete: 'string', trackProveedor: 'string', ingreso: '20/01/2020', destino: 'string'},
-      { casilla: 'BYB0002', cliente: 'string', trackPaquete: 'string', trackProveedor: 'string', ingreso: '20/01/2020', destino: 'string'},
-      { casilla: 'BYB0003', cliente: 'string', trackPaquete: 'string', trackProveedor: 'string', ingreso: '20/01/2020', destino: 'string'},
-      { casilla: 'BYB0004', cliente: 'string', trackPaquete: 'string', trackProveedor: 'string', ingreso: '20/01/2020', destino: 'string'},
-      { casilla: 'BYB0005', cliente: 'string', trackPaquete: 'string', trackProveedor: 'string', ingreso: '20/01/2020', destino: 'string'},
-      { casilla: 'BYB0006', cliente: 'string', trackPaquete: 'string', trackProveedor: 'string', ingreso: '20/01/2020', destino: 'string'},
-      { casilla: 'BYB0007', cliente: 'string', trackPaquete: 'string', trackProveedor: 'string', ingreso: '20/01/2020', destino: 'string'},
-      { casilla: 'BYB0008', cliente: 'string', trackPaquete: 'string', trackProveedor: 'string', ingreso: '20/01/2020', destino: 'string'},
-      { casilla: 'BYB0009', cliente: 'string', trackPaquete: 'string', trackProveedor: 'string', ingreso: '20/01/2020', destino: 'string'},
-      { casilla: 'BYB0010', cliente: 'string', trackPaquete: 'string', trackProveedor: 'string', ingreso: '20/01/2020', destino: 'string'}
-    ];
-    this.dummySource = [];
+    this.paqueteService.getPaquetes(
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      null,
+      '',
+      0,
+      10,
+      '').subscribe(value => {
+      this.dummySource = value.body;
+    });
+    this.displayedColumns = ['casilla', 'clienteNombreApellido', 'numeroTracking', 'codigoExterno', 'ingreso', 'destino'];
   }
 
 

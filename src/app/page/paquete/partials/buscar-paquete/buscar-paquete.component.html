@@ -1,6 +1,6 @@
 <mat-card class="card">
   <mat-card-header class="card-header primary">
-    <mat-card-title>Buscar</mat-card-title>
+    <mat-card-title>Filtros</mat-card-title>
   </mat-card-header>
   <mat-card-content class="card-body">
     <form [formGroup]="filtro">
@@ -15,11 +15,9 @@
           <input matInput name="trackProveedor">
         </mat-form-field>
 
-        <mat-form-field fxFlex="24" appearance="fill" class="white-background">
-          <mat-label>Ingreso desde</mat-label>
-          <input matInput [matDatepicker]="pickerDesde" name="ingresoDesde">
-          <mat-datepicker-toggle matSuffix [for]="pickerDesde"></mat-datepicker-toggle>
-          <mat-datepicker #pickerDesde></mat-datepicker>
+        <mat-form-field fxFlex="24">
+          <mat-label>Casilla</mat-label>
+          <input matInput name="casilla">
         </mat-form-field>
 
         <mat-form-field fxFlex="24">
@@ -34,19 +32,21 @@
           <input matInput name="vuelo">
         </mat-form-field>
 
-        <mat-form-field fxFlex="24">
-          <mat-label>Casilla</mat-label>
-          <input matInput name="casilla">
+        <mat-form-field fxFlex="24" appearance="fill" class="white-background">
+          <mat-label>Ingreso desde</mat-label>
+          <input matInput [matDatepicker]="pickerDesde" name="ingresoDesde">
+          <mat-datepicker-toggle matSuffix [for]="pickerDesde"></mat-datepicker-toggle>
+          <mat-datepicker #pickerDesde></mat-datepicker>
         </mat-form-field>
 
         <mat-form-field fxFlex="24" appearance="fill" class="white-background">
-          <mat-label>Ingreso hasta</mat-label>
-          <input matInput [matDatepicker]="pickerHasta" name="ingresoHasta">
-          <mat-datepicker-toggle matSuffix [for]="pickerHasta"></mat-datepicker-toggle>
-          <mat-datepicker #pickerHasta></mat-datepicker>
+            <mat-label>Ingreso hasta</mat-label>
+            <input matInput [matDatepicker]="pickerHasta" name="ingresoHasta">
+            <mat-datepicker-toggle matSuffix [for]="pickerHasta"></mat-datepicker-toggle>
+            <mat-datepicker #pickerHasta></mat-datepicker>
         </mat-form-field>
 
-        <button fxFlex="24" mat-raised-button (click)="buscar()" class="login-btn-buscar" color="primary">Buscar</button>
+        <button fxFlex="24" mat-raised-button (click)="buscar()" class="btn-buscar" color="primary">Buscar</button>
       </span>
 
 

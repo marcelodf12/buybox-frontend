@@ -46,6 +46,7 @@ import { ResultadoPaqueteComponent } from './page/paquete/partials/resultado-paq
 import { ImportarPaquetesComponent } from './page/paquete/partials/importar-paquetes/importar-paquetes.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MaterialFileInputModule} from 'ngx-material-file-input';
+import {PaqueteService} from './services/paquete.service';
 
 @NgModule({
   declarations: [
@@ -97,7 +98,7 @@ import {MaterialFileInputModule} from 'ngx-material-file-input';
     MaterialFileInputModule,
     ReactiveFormsModule
   ],
-  providers: [LoginService, MatDatepickerModule, MatNativeDateModule ],
+  providers: [LoginService, MatDatepickerModule, MatNativeDateModule, PaqueteService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
