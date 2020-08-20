@@ -26,20 +26,50 @@ export class ResultadoPaqueteComponent implements OnInit {
       '',
       '',
       '',
-      '',
-      '',
+      null,
+      null,
       null,
       '',
       0,
       10,
-      '').subscribe(value => {
-      this.dummySource = value.body;
+      '');
+    paqueteService.paquetes.asObservable().subscribe(value => {
+      this.dummySource = value;
     });
     this.displayedColumns = ['casilla', 'clienteNombreApellido', 'numeroTracking', 'codigoExterno', 'ingreso', 'destino'];
   }
 
 
   ngOnInit(): void {
+  }
+
+  getPaquetes(
+    cliente: string,
+    numeroTracking: string,
+    casilla: string,
+    codigoExterno: string,
+    codigoInterno: string,
+    hasta: string,
+    desde: string,
+    idSucursal: number,
+    vuelo: string,
+    currentPage: number,
+    perPage: number,
+    sorting: string,
+  ): void{
+    this.paqueteService.getPaquetes(
+      cliente,
+      numeroTracking,
+      casilla,
+      codigoExterno,
+      codigoInterno,
+      hasta,
+      desde,
+      idSucursal,
+      vuelo,
+      currentPage,
+      perPage,
+      sorting);
   }
 
 }

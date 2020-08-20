@@ -7,41 +7,41 @@
       <span fxFill fxLayout="row" fxLayoutAlign="space-between end">
         <mat-form-field fxFlex="24">
           <mat-label>Tracking Paquete</mat-label>
-          <input matInput name="trackPaquete">
+          <input matInput name="trackPaquete" formControlName="trackPaquete">
         </mat-form-field>
 
         <mat-form-field fxFlex="24">
-          <mat-label>Tracking Proveedor</mat-label>
-          <input matInput name="trackProveedor">
+          <mat-label>Cliente</mat-label>
+          <input matInput name="cliente" formControlName="cliente">
         </mat-form-field>
 
         <mat-form-field fxFlex="24">
           <mat-label>Casilla</mat-label>
-          <input matInput name="casilla">
+          <input matInput name="casilla" formControlName="casilla">
         </mat-form-field>
 
         <mat-form-field fxFlex="24">
           <mat-label>Destino</mat-label>
-          <input matInput name="destino">
+          <input matInput name="destino" formControlName="destino">
         </mat-form-field>
       </span>
 
       <span fxFill fxLayout="row" fxLayoutAlign="space-between end">
         <mat-form-field fxFlex="24">
           <mat-label>Vuelo</mat-label>
-          <input matInput name="vuelo">
+          <input matInput name="vuelo" formControlName="vuelo">
         </mat-form-field>
 
         <mat-form-field fxFlex="24" appearance="fill" class="white-background">
           <mat-label>Ingreso desde</mat-label>
-          <input matInput [matDatepicker]="pickerDesde" name="ingresoDesde">
+          <input matInput [matDatepicker]="pickerDesde" name="ingresoDesde" formControlName="ingresoDesde">
           <mat-datepicker-toggle matSuffix [for]="pickerDesde"></mat-datepicker-toggle>
           <mat-datepicker #pickerDesde></mat-datepicker>
         </mat-form-field>
 
         <mat-form-field fxFlex="24" appearance="fill" class="white-background">
             <mat-label>Ingreso hasta</mat-label>
-            <input matInput [matDatepicker]="pickerHasta" name="ingresoHasta">
+            <input matInput [matDatepicker]="pickerHasta" name="ingresoHasta" formControlName="ingresoHasta">
             <mat-datepicker-toggle matSuffix [for]="pickerHasta"></mat-datepicker-toggle>
             <mat-datepicker #pickerHasta></mat-datepicker>
         </mat-form-field>

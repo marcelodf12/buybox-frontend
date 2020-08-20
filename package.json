@@ -28,10 +28,12 @@
     "@fortawesome/free-brands-svg-icons": "^5.13.0",
     "@fortawesome/free-regular-svg-icons": "^5.13.0",
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
+    "moment": "^2.27.0",
     "ngx-logger": "^4.1.9",
     "ngx-material-file-input": "^2.1.1",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
+    "utils-string": "^1.0.0",
     "zone.js": "~0.10.3"
   },
   "devDependencies": {
