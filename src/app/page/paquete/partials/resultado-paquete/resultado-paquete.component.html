@@ -6,8 +6,8 @@
     <table mat-table fxFill [dataSource]="dummySource">
       <!-- casilla Column -->
       <ng-container matColumnDef="casilla">
-        <mat-header-cell *matHeaderCellDef [ngClass]="'w-75'"> Casilla </mat-header-cell>
-        <mat-cell *matCellDef="let element" [ngClass]="'w-75'"> {{element.casilla}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef [ngClass]="'w-100'"> Casilla </mat-header-cell>
+        <mat-cell *matCellDef="let element" [ngClass]="'w-100'"> {{element.casilla}} </mat-cell>
       </ng-container>
 
       <!-- cliente Column -->
@@ -31,7 +31,7 @@
       <!-- ingreso Column -->
       <ng-container matColumnDef="ingreso">
         <mat-header-cell *matHeaderCellDef [ngClass]="'w-100'"> Ingreso </mat-header-cell>
-        <mat-cell *matCellDef="let element" [ngClass]="'w-100'"> {{element.ingreso|date:'shortDate'}} </mat-cell>
+        <mat-cell *matCellDef="let element" [ngClass]="'w-100'"> {{element.ingreso|date:'dd/MM/yyyy'}} </mat-cell>
       </ng-container>
 
       <!-- destino Column -->
