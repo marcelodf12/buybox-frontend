@@ -17,8 +17,8 @@ import has = Reflect.has;
 })
 export class PaqueteService{
 
-  private apiUrl: string = environment.apiUrl + '/api/v1/paquete';
-  headers = new HttpHeaders().set('Content-Type', 'application/json').append('Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU5Nzk2ODY2MywicGVybWlzc2lvbnMiOiJST0xFX0FETUlOIn0.aNKaCVeTwRHJujx63BKIVtDBBvbUoJJiy8ftbDqTTbecUOG77jnfUFcS5unegNjJbnve1JVGgOXlyphm7XVI4w');
+  private apiUrl: string = environment.apiUrl + 'api/v1/paquete';
+  private headers: HttpHeaders = null;
   paquetes: BehaviorSubject<Paquete[]> = new BehaviorSubject<Paquete[]>([]);
 
   constructor(
@@ -42,6 +42,8 @@ export class PaqueteService{
     perPage: number,
     sorting: string,
   ): void {
+    const token = localStorage.getItem('Authorization');
+    this.headers = new HttpHeaders().set('Content-Type', 'application/json').append('Authorization', token);
     let params = new HttpParams();
     const desdeStr: string = !!desde ? moment(desde, 'yyyy-MM-DDThh:mm:ss.sssZ').format('yyyy-MM-DD') : '';
     const hastaStr: string = !!hasta ? moment(hasta, 'yyyy-MM-DDThh:mm:ss.sssZ').format('yyyy-MM-DD') : '';

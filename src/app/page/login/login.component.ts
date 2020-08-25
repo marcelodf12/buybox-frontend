@@ -6,7 +6,7 @@ import {LoginService} from '../../services/login.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit, AfterContentInit {
+export class LoginComponent implements OnInit {
 
   username: string;
   password: string;
@@ -26,13 +26,7 @@ export class LoginComponent implements OnInit, AfterContentInit {
   }
 
   login(): void {
-    this.loginService.autenticar(this.username, this.password);
-  }
-
-  ngAfterContentInit(): void {
-    setTimeout(() => {
-      this.loginService.autenticar(this.username, this.password);
-    }, 0);
+    this.loginService.login(this.username, this.password);
   }
 
 }

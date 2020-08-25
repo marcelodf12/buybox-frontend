@@ -19,6 +19,7 @@ export class AppComponent implements OnInit {
     loginService.estaAutenticadoSubject().subscribe((data) => {
       this.estaAutenticado = data;
     });
+    loginService.checkLogin();
   }
 
   ngOnInit(): void { }
