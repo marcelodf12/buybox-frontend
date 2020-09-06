@@ -32,7 +32,7 @@ export class BuscarPaqueteComponent implements OnInit {
 
   buscar(): void {
     this.logger.debug('Ejecutando buscar ' + typeof(this.filtro.get('ingresoHasta').value));
-    this.paqueteService.getPaquetes(
+    this.paqueteService.setFilter(
       this.filtro.get('cliente').value,
       this.filtro.get('trackPaquete').value,
       this.filtro.get('casilla').value,
@@ -42,8 +42,9 @@ export class BuscarPaqueteComponent implements OnInit {
       this.filtro.get('ingresoDesde').value,
       null,
       this.filtro.get('vuelo').value,
+    );
+    this.paqueteService.getPaquetes(
       0,
-      10,
       '');
   }
 

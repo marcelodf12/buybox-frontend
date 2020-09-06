@@ -35,8 +35,7 @@ export class LoginService{
       {headers: this.headers, params, observe: 'response'}).toPromise().then(res => {
       this.token = res.headers.get('Authorization').replace('Bearer', '').trim();
       localStorage.setItem('Authorization', this.token);
-      this.autenticado.next(true);
-      // this.checkLogin();
+      this.checkLogin();
     });
   }
 
@@ -46,7 +45,7 @@ export class LoginService{
       this.router.navigate(['/paquetes']);
       this.autenticado.next(true);
     }else{
-      this.router.navigate(['/']);
+      this.router.navigate(['/login']);
       this.autenticado.next(false);
     }
   }
