@@ -9,6 +9,7 @@ import {NGXLogger} from 'ngx-logger';
 import * as StringUtil from 'utils-string';
 import * as moment from 'moment';
 import has = Reflect.has;
+import {PaqueteImportModel} from '../common/models/paquete-import.model';
 
 
 
@@ -18,7 +19,6 @@ import has = Reflect.has;
 export class PaqueteService{
 
   private apiUrl: string = environment.apiUrl + 'api/v1/paquete';
-  private headers: HttpHeaders = null;
   paquetes: BehaviorSubject<Paquete[]> = new BehaviorSubject<Paquete[]>([]);
 
   constructor(
@@ -43,7 +43,7 @@ export class PaqueteService{
     sorting: string,
   ): void {
     const token = localStorage.getItem('Authorization');
-    this.headers = new HttpHeaders().set('Content-Type', 'application/json').append('Authorization', token);
+    const headers: HttpHeaders = new HttpHeaders();
     let params = new HttpParams();
     const desdeStr: string = !!desde ? moment(desde, 'yyyy-MM-DDThh:mm:ss.sssZ').format('yyyy-MM-DD') : '';
     const hastaStr: string = !!hasta ? moment(hasta, 'yyyy-MM-DDThh:mm:ss.sssZ').format('yyyy-MM-DD') : '';
@@ -62,11 +62,17 @@ export class PaqueteService{
     params = params.append('codigoExterno', StringUtil.trimToEmpty(codigoExterno));
     params = params.append('codigoInterno', StringUtil.trimToEmpty(codigoInterno));
     params = params.append('cliente', StringUtil.trimToEmpty(cliente));
-    this.logger.debug(JSON.stringify(this.headers));
     this.http.get<GeneralResponse<Array<Paquete>, Pageable>>(
-      `${this.apiUrl}`, { headers: this.headers, params }).subscribe(value => {
+      `${this.apiUrl}`, { headers, params }).subscribe(value => {
        this.paquetes.next(value.body);
     });
+  }
+
+  uploadFile(form: FormData): Observable<GeneralResponse<Array<PaqueteImportModel>, any>> {
+    const headers: HttpHeaders = new HttpHeaders();
+    const params = new HttpParams();
+    return this.http.post<GeneralResponse<Array<PaqueteImportModel>, any>>(
+      `${this.apiUrl}/import`, form, { headers, params });
   }
 
 }

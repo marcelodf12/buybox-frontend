@@ -22,7 +22,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { LoggerModule } from 'ngx-logger';
 
 import { environment } from 'src/environments/environment';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { RecepcionComponent } from './page/recepcion/recepcion.component';
 import { PaqueteComponent } from './page/paquete/paquete.component';
 import { ClientesComponent } from './page/clientes/clientes.component';
@@ -47,6 +47,10 @@ import { ImportarPaquetesComponent } from './page/paquete/partials/importar-paqu
 import {MatDialogModule} from '@angular/material/dialog';
 import {MaterialFileInputModule} from 'ngx-material-file-input';
 import {PaqueteService} from './services/paquete.service';
+import {ConfigurationService} from './services/configuration.service';
+import {JwtService} from './services/jwt.service';
+import {AuthInterceptor} from './common/interceptors/auth.interceptor';
+import {EstadoMapper} from './common/mappers/estado.mapper';
 
 @NgModule({
   declarations: [
@@ -98,7 +102,16 @@ import {PaqueteService} from './services/paquete.service';
     MaterialFileInputModule,
     ReactiveFormsModule
   ],
-  providers: [LoginService, MatDatepickerModule, MatNativeDateModule, PaqueteService ],
+  providers: [
+    LoginService,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    PaqueteService,
+    ConfigurationService,
+    JwtService,
+    EstadoMapper,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

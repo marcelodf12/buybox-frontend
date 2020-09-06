@@ -13,8 +13,6 @@ export class LoginService{
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   token: string = null;
 
-
-
   autenticado: Subject<boolean>;
 
   constructor(
@@ -30,7 +28,6 @@ export class LoginService{
   }
 
   login(usuario: string, password: string): void{
-    this.autenticado.next(true);
     const params = new HttpParams();
     this.http.post(
       `${this.apiUrl}`,
@@ -38,7 +35,8 @@ export class LoginService{
       {headers: this.headers, params, observe: 'response'}).toPromise().then(res => {
       this.token = res.headers.get('Authorization').replace('Bearer', '').trim();
       localStorage.setItem('Authorization', this.token);
-      this.checkLogin();
+      this.autenticado.next(true);
+      // this.checkLogin();
     });
   }
 

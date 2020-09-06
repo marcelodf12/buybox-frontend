@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { faFileExcel } from '@fortawesome/free-solid-svg-icons';
 import {Producto} from '../../../../interface/producto.interface';
 import {FormControl, FormGroup} from '@angular/forms';
+import {PaqueteService} from '../../../../services/paquete.service';
+import {FileInput} from 'ngx-material-file-input';
+import {PaqueteImportModel} from '../../../../common/models/paquete-import.model';
 
 @Component({
   selector: 'app-importar-paquetes',
@@ -14,22 +17,27 @@ export class ImportarPaquetesComponent implements OnInit {
   faFileExcel: any = faFileExcel;
   archivo: any;
   formArchivo: FormGroup;
+  paquetesImportados: PaqueteImportModel[];
 
-  constructor() {
+  constructor(
+    private paqueteService: PaqueteService,
+  ) {
     this.formArchivo = new FormGroup({
-      archivo: new FormControl()
+      file: new FormControl()
     });
-    this.displayedColumns = ['casilla', 'trackPaquete', 'trackProveedor', 'estadoImportado'];
-    this.dummySource = [
-      { casilla: 'BYB0001', cliente: 'string', trackPaquete: 'string', trackProveedor: 'string', estadoImportado: 0},
-      { casilla: 'BYB0002', cliente: 'string', trackPaquete: 'string', trackProveedor: 'string', estadoImportado: -1},
-      { casilla: 'BYB0003', cliente: 'string', trackPaquete: 'string', trackProveedor: 'string', estadoImportado: 1},
-      { casilla: 'BYB0010', cliente: 'string', trackPaquete: 'string', trackProveedor: 'string', estadoImportado: 0}
-    ];
-    this.dummySource = [];
+    this.displayedColumns = ['orden', 'casilla', 'trackPaquete', 'cliente', 'estadoImportado'];
   }
 
   ngOnInit(): void {
   }
 
+  subir(): void {
+    const fileForm: FileInput = this.formArchivo.get('file').value;
+    const file = fileForm.files[0]; // in case user didn't selected multiple files
+    const formData = new FormData();
+    formData.append('file', file);
+    this.paqueteService.uploadFile(formData).subscribe(value => {
+        this.paquetesImportados = value.body;
+    });
+  }
 }
