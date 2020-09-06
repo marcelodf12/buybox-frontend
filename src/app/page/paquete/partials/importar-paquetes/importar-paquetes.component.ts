@@ -18,6 +18,8 @@ export class ImportarPaquetesComponent implements OnInit {
   archivo: any;
   formArchivo: FormGroup;
   paquetesImportados: PaqueteImportModel[];
+  mensaje: string;
+  loading: boolean;
 
   constructor(
     private paqueteService: PaqueteService,
@@ -25,19 +27,25 @@ export class ImportarPaquetesComponent implements OnInit {
     this.formArchivo = new FormGroup({
       file: new FormControl()
     });
-    this.displayedColumns = ['orden', 'casilla', 'trackPaquete', 'cliente', 'estadoImportado'];
+    this.displayedColumns = ['orden', 'casilla', 'trackPaquete', 'cliente', 'descripcion' , 'usd', 'peso', 'estadoImportado'];
+    this.loading = false;
+    this.mensaje = 'Sin datos que mostrar. Favor elija el archivo a importar y luego presione procesar'
   }
 
   ngOnInit(): void {
   }
 
   subir(): void {
+    this.paquetesImportados = [];
+    this.mensaje = 'Procesando archivo';
     const fileForm: FileInput = this.formArchivo.get('file').value;
     const file = fileForm.files[0]; // in case user didn't selected multiple files
     const formData = new FormData();
     formData.append('file', file);
     this.paqueteService.uploadFile(formData).subscribe(value => {
-        this.paquetesImportados = value.body;
+      this.paquetesImportados = value.body;
+    }, error => {
+      this.mensaje = 'Error al leer el archivo. Favor verifique el formato';
     });
   }
 }

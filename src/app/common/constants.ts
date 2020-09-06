@@ -1,4 +1,4 @@
-export const PAGE_SIZE_OPTIONS: number[] = [5, 10, 20, 50];
+export const PAGE_SIZE_OPTIONS: number[] = [10, 25, 50, 100];
 
 export class MessagesConst {
   public static get(code: number): string{

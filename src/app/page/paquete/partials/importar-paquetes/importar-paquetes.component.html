@@ -14,9 +14,9 @@
         <fa-icon [icon]="faFileExcel"></fa-icon>
       </button>
     </mat-form-field>
-    <button fxFlex="19" mat-raised-button class="btn-procesar" color="accent" (click)="subir()">Procesar</button>
+    <button fxFlex="19" mat-raised-button class="btn-procesar" color="accent" (click)="subir()" [disabled]="loading">Procesar</button>
   </form>
-  <table fxFill mat-table [dataSource]="paquetesImportados">
+  <table fxFill mat-table [dataSource]="paquetesImportados" [hidden]="loading || paquetesImportados==null || paquetesImportados.length<=0">
     <!-- orden Column -->
     <ng-container matColumnDef="orden">
       <mat-header-cell *matHeaderCellDef [ngClass]="'w-50'"> Fila </mat-header-cell>
@@ -26,13 +26,13 @@
     <!-- casilla Column -->
     <ng-container matColumnDef="casilla">
       <mat-header-cell *matHeaderCellDef [ngClass]="'w-100'"> Casilla </mat-header-cell>
-      <mat-cell *matCellDef="let element" [ngClass]="'w-100'"> {{element.p.casilla}} </mat-cell>
+      <mat-cell *matCellDef="let element" [ngClass]="'w-100'"> {{!!element.p.casilla?element.p.casilla:element.p.codigoExterno}} </mat-cell>
     </ng-container>
 
     <!-- cliente Column -->
     <ng-container matColumnDef="cliente">
       <mat-header-cell *matHeaderCellDef> Cliente </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.p.clienteNombreApellido}} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{!!element.p.clienteNombreApellido?element.p.clienteNombreApellido:'ALERTA: CASILLA NO EXISTE'}} </mat-cell>
     </ng-container>
 
     <!-- Tracking Column -->
@@ -41,13 +41,31 @@
       <mat-cell *matCellDef="let element"> {{element.p.numeroTracking}} </mat-cell>
     </ng-container>
 
+    <!-- Tracking Column -->
+    <ng-container matColumnDef="descripcion">
+      <mat-header-cell *matHeaderCellDef> Descripcion </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.p.descripcion}} </mat-cell>
+    </ng-container>
+
+    <!-- Tracking Column -->
+    <ng-container matColumnDef="peso">
+      <mat-header-cell *matHeaderCellDef [ngClass]="'w-50'"> Kg </mat-header-cell>
+      <mat-cell *matCellDef="let element" [ngClass]="'w-50'"> {{element.p.peso/1000}} </mat-cell>
+    </ng-container>
+
+    <!-- Tracking Column -->
+    <ng-container matColumnDef="usd">
+      <mat-header-cell *matHeaderCellDef [ngClass]="'w-50'"> USD </mat-header-cell>
+      <mat-cell *matCellDef="let element" [ngClass]="'w-50'"> {{element.p.montoTotal/100}} </mat-cell>
+    </ng-container>
+
     <!-- estadoImportado Column -->
     <ng-container matColumnDef="estadoImportado">
       <mat-header-cell *matHeaderCellDef [ngClass]="'w-50'"> Estado </mat-header-cell>
       <mat-cell *matCellDef="let element" [ngClass]="'w-50'">
         <mat-icon *ngIf="element.result===-1" color="primary">error</mat-icon>
         <mat-icon *ngIf="element.result===0" color="success">check_circle</mat-icon>
-        <mat-icon *ngIf="element.result===1" color="warn">warning</mat-icon>
+        <mat-icon *ngIf="element.result===1" color="success">autorenew</mat-icon>
       </mat-cell>
     </ng-container>
 
@@ -55,17 +73,19 @@
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
     <tr class="mat-row" *matNoDataRow>
-      <td class="mat-cell" colspan="4">Seleccione el archivo para importar los datos</td>
+      <td class="mat-cell" colspan="4">{{this.mensaje}}</td>
     </tr>
 
   </table>
-
+  <div [hidden]="!loading && paquetesImportados!=null && paquetesImportados.length>0" style="padding-bottom: 10px">
+    {{this.mensaje}}
+  </div>
 
 </mat-dialog-content>
 <mat-dialog-actions  fxLayout="row" fxLayoutAlign="space-between center">
   <div fxLayout="row" fxFlexAlign="space-around none">
-      <mat-icon color="success">check_circle</mat-icon> Exitoso &nbsp;&nbsp;
-      <mat-icon color="warn">warning</mat-icon> Duplicado &nbsp;&nbsp;
+      <mat-icon color="success">check_circle</mat-icon> Nuevo &nbsp;&nbsp;
+      <mat-icon color="success">autorenew</mat-icon> Actualizado &nbsp;&nbsp;
       <mat-icon color="primary">error</mat-icon> Error
   </div>
   <div>

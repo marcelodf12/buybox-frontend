@@ -7,7 +7,7 @@
       <!-- casilla Column -->
       <ng-container matColumnDef="casilla">
         <mat-header-cell *matHeaderCellDef [ngClass]="'w-100'"> Casilla </mat-header-cell>
-        <mat-cell *matCellDef="let element" [ngClass]="'w-100'"> {{element.casilla}} </mat-cell>
+        <mat-cell *matCellDef="let element" [ngClass]="'w-100'"> {{!!element.casilla}} </mat-cell>
       </ng-container>
 
       <!-- cliente Column -->
