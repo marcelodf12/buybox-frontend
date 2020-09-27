@@ -1,0 +1,53 @@
+<h1 mat-dialog-title>Editar cliente</h1>
+<div mat-dialog-content>
+  <h3>Casilla: {{cliente.casilla}}</h3>
+  <span fxFill fxLayout="column" >
+    <mat-form-field>
+      <mat-label>Nombre:</mat-label>
+      <input matInput name="nombre" [(ngModel)]="cliente.nombre">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Apellido:</mat-label>
+      <input matInput name="nombre" [(ngModel)]="cliente.apellido">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Correo:</mat-label>
+      <input matInput name="nombre" [(ngModel)]="cliente.correo" readonly="true">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Celular:</mat-label>
+      <input matInput name="nombre" [(ngModel)]="cliente.celular">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Dirección:</mat-label>
+      <input matInput name="nombre" [(ngModel)]="cliente.direccion">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Dirección:</mat-label>
+      <input matInput name="nombre" [(ngModel)]="cliente.ruc">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Dirección:</mat-label>
+      <input matInput name="nombre" [(ngModel)]="cliente.razonSocial">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select [(value)]="cliente.idSucursal">
+        <mat-option *ngFor="let s of sucursales" [value]="s.i">
+          {{s.n}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+      <mat-form-field>
+      <mat-select [(value)]="cliente.idSegmento">
+        <mat-option *ngFor="let s of segmentos" [value]="s.i">
+          {{s.n}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </span>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-button color="accent" [mat-dialog-close]="true" cdkFocusInitial (click)="save()">Guardar</button>
+</div>
+

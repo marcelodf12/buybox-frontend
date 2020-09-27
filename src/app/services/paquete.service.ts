@@ -8,7 +8,6 @@ import {environment} from '../../environments/environment';
 import {NGXLogger} from 'ngx-logger';
 import * as StringUtil from 'utils-string';
 import * as moment from 'moment';
-import has = Reflect.has;
 import {PaqueteImportModel} from '../common/models/paquete-import.model';
 
 
@@ -44,7 +43,6 @@ export class PaqueteService{
     currentPage: number,
     sorting: string,
   ): void {
-    const token = localStorage.getItem('Authorization');
     const headers: HttpHeaders = new HttpHeaders();
     let params = new HttpParams();
     params = params.append('currentPage', String(currentPage));
@@ -96,7 +94,9 @@ export class PaqueteService{
       this.desde = desdeStr;
       this.idSucursal = _idSucursal;
       this.vuelo = StringUtil.trimToEmpty(_vuelo);
-      if (!!_perPage) {this.perPage = _perPage;}
+      if (!!_perPage) {
+        this.perPage = _perPage;
+      }
   }
 
   setPageSize( _perPage: number): void{

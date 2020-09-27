@@ -48,3 +48,24 @@
   float: left;
   margin-top:7px;
 }
+
+.snackbar-success {
+  background: mat-color($tracking-system-success);
+  color: white;
+}
+
+.snackbar-error {
+  background: mat-color($tracking-system-primary);
+  color: white;
+}
+
+.snackbar-info {
+  background: mat-color($tracking-system-accent);
+  color: white;
+}
+
+.snackbar-warning {
+  background: mat-color($tracking-system-warn);
+  color: white;
+}
+

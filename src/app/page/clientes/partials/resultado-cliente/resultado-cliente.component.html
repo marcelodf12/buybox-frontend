@@ -10,34 +10,38 @@
         <mat-cell *matCellDef="let element" [ngClass]="'w-100'"> {{element.casilla}} </mat-cell>
       </ng-container>
 
-      <!-- cliente Column -->
+      <!-- clienteNombreApellido Column -->
       <ng-container matColumnDef="clienteNombreApellido">
         <mat-header-cell *matHeaderCellDef> Cliente </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.clienteNombreApellido}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.apellido}}, {{element.nombre}} </mat-cell>
       </ng-container>
 
-      <!-- trackPaquete Column -->
-      <ng-container matColumnDef="numeroTracking">
-        <mat-header-cell *matHeaderCellDef> Tracking Paquete </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.numeroTracking}} </mat-cell>
+      <!-- cedula Column -->
+      <ng-container matColumnDef="cedula">
+        <mat-header-cell *matHeaderCellDef [ngClass]="'w-100'"> Cedula/Ruc </mat-header-cell>
+        <mat-cell *matCellDef="let element" [ngClass]="'w-100'"> {{element.ruc}} </mat-cell>
       </ng-container>
 
-      <!-- trackProveedor Column -->
-      <ng-container matColumnDef="codigoExterno">
-        <mat-header-cell *matHeaderCellDef> Tracking Proveedor </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.codigoExterno}} </mat-cell>
+      <!-- correo Column -->
+      <ng-container matColumnDef="correo">
+        <mat-header-cell *matHeaderCellDef> Correo </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.correo}} </mat-cell>
       </ng-container>
 
-      <!-- ingreso Column -->
-      <ng-container matColumnDef="ingreso">
-        <mat-header-cell *matHeaderCellDef [ngClass]="'w-100'"> Ingreso </mat-header-cell>
-        <mat-cell *matCellDef="let element" [ngClass]="'w-100'"> {{element.ingreso|date:'dd/MM/yyyy'}} </mat-cell>
+      <!-- segmento Column -->
+      <ng-container matColumnDef="segmento">
+        <mat-header-cell *matHeaderCellDef [ngClass]="'w-100'"> Segmento </mat-header-cell>
+        <mat-cell *matCellDef="let element" [ngClass]="'w-100'"> {{segmentoMap.get(element.idSegmento).n}} </mat-cell>
       </ng-container>
 
-      <!-- destino Column -->
-      <ng-container matColumnDef="destino">
-        <mat-header-cell *matHeaderCellDef> Destino </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.destino}} </mat-cell>
+      <!-- acciones Column -->
+      <ng-container matColumnDef="acciones">
+        <mat-header-cell *matHeaderCellDef [ngClass]="'w-50'"> Acciones </mat-header-cell>
+        <mat-cell *matCellDef="let element" [ngClass]="'w-50'">
+          <button mat-icon-button color="accent" aria-label="Editar" (click)="editar(element)">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </mat-cell>
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

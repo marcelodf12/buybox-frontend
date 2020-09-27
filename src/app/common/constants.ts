@@ -7,11 +7,13 @@ export class MessagesConst {
 
       case 2001: return 'Usuario creado. Se ha enviado un correo electrónico para confirmarción';
       case 2002: return 'No posee paquetes aún';
+      case 2003: return 'Edición correcta';
 
       case 4001: return 'Parámetros no válidos';
       case 4002: return 'Faltan campos obligatorios';
       case 4003: return 'El correo electrónico ya ha sido utilizado por otro usuario';
       case 4004: return 'Recurso no encontrado';
+      case 4005: return 'El correo proporcionado no existe';
 
       case 9999: return 'Ah ocurrido un error inesperado. Favor intente más tarde';
       case -1: return 'Usuario y/o Contraseña incorrecto';

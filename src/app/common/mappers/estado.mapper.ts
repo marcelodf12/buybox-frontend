@@ -1,10 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Estado} from '../models/configuration.model';
 
-class List<T> {
-}
-
-
 @Injectable({
     providedIn: 'root'
 })

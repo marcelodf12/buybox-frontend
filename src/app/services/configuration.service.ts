@@ -8,6 +8,8 @@ import {ConfigurationModel} from '../common/models/configuration.model';
 import {EstadoMapper} from '../common/mappers/estado.mapper';
 import {GeneralResponse} from '../common/models/general-response.model';
 import {environment} from '../../environments/environment';
+import {SucursalMapper} from '../common/mappers/sucursal.mapper';
+import {SegmentoMapper} from '../common/mappers/segmento.mapper';
 
 
 
@@ -25,6 +27,8 @@ export class ConfigurationService {
         private http: HttpClient,
         private logger: NGXLogger,
         private estadoMapper: EstadoMapper,
+        private sucursalMapper: SucursalMapper,
+        private segmentoMapper: SegmentoMapper
     ) { }
 
     getConfig(): void {
@@ -34,6 +38,8 @@ export class ConfigurationService {
             .subscribe(
                 value => {
                     this.estadoMapper.init(value.body.estados);
+                    this.sucursalMapper.init(value.body.sucursales);
+                    this.segmentoMapper.init(value.body.segmentos);
                     this.config.next(value.body);
                 });
     }

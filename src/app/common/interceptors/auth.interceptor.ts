@@ -5,6 +5,9 @@ import {catchError, tap} from 'rxjs/operators';
 import {NGXLogger} from 'ngx-logger';
 import {GeneralResponse} from '../models/general-response.model';
 import {LoginService} from '../../services/login.service';
+import {MessagesConst} from '../constants';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {ColorSnackbarMapper} from '../mappers/color-snackbar.mapper';
 
 
 
@@ -17,6 +20,8 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(
     private logger: NGXLogger,
     private loginService: LoginService,
+    private snackBar: MatSnackBar,
+    private colorSnackbarMapper: ColorSnackbarMapper
   ) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -65,13 +70,11 @@ export class AuthInterceptor implements HttpInterceptor {
     }
   }
 
-  private async presentToast(code: number, color: string) {
-    /*const toast = await this.toastController.create({
-      message: MessagesConst.get(code),
-      color: color,
-      duration: 3000
+  private presentToast(code: number, color: string): void {
+    this.snackBar.open(MessagesConst.get(code), null, {
+      duration: 2000,
+      panelClass: [this.colorSnackbarMapper.colorMap.get(color)]
     });
-    await toast.present();*/
   }
 
 }

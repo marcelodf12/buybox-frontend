@@ -14,4 +14,6 @@ export class ClienteModel {
     direccion?: any;
     celular?: any;
     casilla: string;
+    idSucursal?: number;
+    idSegmento?: number;
 }

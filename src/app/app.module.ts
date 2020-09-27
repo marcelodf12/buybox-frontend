@@ -51,6 +51,15 @@ import {ConfigurationService} from './services/configuration.service';
 import {JwtService} from './services/jwt.service';
 import {AuthInterceptor} from './common/interceptors/auth.interceptor';
 import {EstadoMapper} from './common/mappers/estado.mapper';
+import {BuscarClienteComponent} from './page/clientes/partials/buscar-cliente/buscar-cliente.component';
+import {ResultadoClienteComponent} from './page/clientes/partials/resultado-cliente/resultado-cliente.component';
+import {ClienteService} from './services/cliente.service';
+import { EditarClienteComponent } from './page/clientes/partials/editar-cliente/editar-cliente.component';
+import {MatSelectModule} from '@angular/material/select';
+import {SegmentoMapper} from './common/mappers/segmento.mapper';
+import {SucursalMapper} from './common/mappers/sucursal.mapper';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {ColorSnackbarMapper} from './common/mappers/color-snackbar.mapper';
 
 @NgModule({
   declarations: [
@@ -69,7 +78,10 @@ import {EstadoMapper} from './common/mappers/estado.mapper';
     UsuariosComponent,
     BuscarPaqueteComponent,
     ResultadoPaqueteComponent,
-    ImportarPaquetesComponent
+    ImportarPaquetesComponent,
+    BuscarClienteComponent,
+    ResultadoClienteComponent,
+    EditarClienteComponent
   ],
   imports: [
     BrowserModule,
@@ -100,16 +112,23 @@ import {EstadoMapper} from './common/mappers/estado.mapper';
     EcoFabSpeedDialModule,
     FontAwesomeModule,
     MaterialFileInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule,
+    MatSelectModule,
+    MatSnackBarModule
   ],
   providers: [
     LoginService,
     MatDatepickerModule,
     MatNativeDateModule,
     PaqueteService,
+    ClienteService,
     ConfigurationService,
     JwtService,
     EstadoMapper,
+    SegmentoMapper,
+    SucursalMapper,
+    ColorSnackbarMapper,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]

@@ -6,6 +6,7 @@ export class ConfigurationModel {
     departamentos: Departamento[];
     categorias: Categoria[];
     etiquestas: Etiqueta[];
+    segmentos: Segmento[];
 }
 
 export interface Estado {
@@ -38,6 +39,11 @@ export interface Barrio {
 export interface Departamento {
     i: number;
     n: string;
+}
+
+export interface Segmento {
+  i: number;
+  n: string;
 }
 
 export interface Categoria {
