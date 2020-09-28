@@ -21,7 +21,7 @@ export class ConfigurationService {
 
     private apiUrl: string = environment.apiUrl + 'api/v1/commons';
     private headers: HttpHeaders = null;
-    public config: BehaviorSubject<ConfigurationModel> = new BehaviorSubject<ConfigurationModel>(null);
+    public config: BehaviorSubject<ConfigurationModel> = new BehaviorSubject<ConfigurationModel>(new ConfigurationModel());
 
     constructor(
         private http: HttpClient,

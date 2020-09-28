@@ -39,7 +39,7 @@ export class ClienteService {
     sorting: string,
   ): void {
     this.lastCurrentPage = currentPage;
-    this.lastSorting = sorting
+    this.lastSorting = sorting;
     const headers: HttpHeaders = new HttpHeaders();
     let params = new HttpParams();
     params = params.append('currentPage', String(currentPage));
@@ -50,9 +50,14 @@ export class ClienteService {
     params = params.append('correo', this.correo);
     params = params.append('cliente', this.cliente);
     this.http.get<GeneralResponse<Array<ClienteModel>, Pageable>>(
-      `${this.apiUrl}`, { headers, params }).subscribe(value => {
-      this.clientes.next(value);
-    });
+      `${this.apiUrl}`, { headers, params }).subscribe(
+        value => {
+              this.clientes.next(value);
+        },
+        error => {
+            this.clientes.next(new GeneralResponse<ClienteModel[], Pageable>());
+        }
+    );
   }
 
   setFilter(

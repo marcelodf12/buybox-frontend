@@ -3,6 +3,8 @@ import {BehaviorSubject, Subject} from 'rxjs';
 import {environment} from '../../environments/environment';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Router} from '@angular/router';
+import {PermisosConst} from '../common/constants';
+import {JwtService} from './jwt.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +19,8 @@ export class LoginService{
 
   constructor(
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private jwtService: JwtService
   ) {
     this.autenticado = new Subject<boolean>();
     this.autenticado.next(false);
@@ -42,7 +45,7 @@ export class LoginService{
   checkLogin(): void{
     console.log('check session');
     if ( !!localStorage.getItem('Authorization')){
-      this.router.navigate(['/paquetes']);
+      this.router.navigate(['/recepcion']);
       this.autenticado.next(true);
     }else{
       this.router.navigate(['/login']);
@@ -53,5 +56,27 @@ export class LoginService{
   salir(): void{
     localStorage.removeItem('Authorization');
     this.checkLogin();
+  }
+
+  isAdmin(): boolean {
+    const token: string = localStorage.getItem('Authorization');
+    let isAdmin = false;
+    if (!!token){
+      const isValidToken = this.jwtService.isValidToken(token);
+      if (isValidToken) {
+        for (const permiso of PermisosConst.adminPermisos) {
+          for (const permisoJwt of this.jwtService.getPermisos(token)) {
+            if (permiso === permisoJwt) {
+              isAdmin = true;
+              break;
+            }
+          }
+          if (isAdmin) {
+            break;
+          }
+        }
+      }
+    }
+    return isAdmin;
   }
 }

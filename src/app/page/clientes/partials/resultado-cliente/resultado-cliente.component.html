@@ -53,6 +53,9 @@
       </tr>
 
     </table>
+    <div *ngIf="!!!dummySource || dummySource.length === 0" style="padding: 10px">
+      Su busqueda no arrojó resultados
+    </div>
     <mat-paginator [pageSize]="pageSize" [pageIndex]="pageNumber" [pageSizeOptions]="pageSizeOptions" showFirstLastButtons [length]="total" (page)="changePage($event)"></mat-paginator>
 
   </mat-card-content>

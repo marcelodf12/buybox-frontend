@@ -59,9 +59,13 @@ export class PaqueteService{
     params = params.append('codigoInterno', this.codigoInterno);
     params = params.append('cliente', this.cliente);
     this.http.get<GeneralResponse<Array<Paquete>, Pageable>>(
-      `${this.apiUrl}`, { headers, params }).subscribe(value => {
-       this.paquetes.next(value);
-    });
+      `${this.apiUrl}`, { headers, params }).subscribe(
+        value => {
+          this.paquetes.next(value);
+        }, error => {
+          this.paquetes.next(new GeneralResponse<Paquete[], Pageable>());
+      }
+    );
   }
 
   uploadFile(form: FormData): Observable<GeneralResponse<Array<PaqueteImportModel>, any>> {
@@ -101,6 +105,12 @@ export class PaqueteService{
 
   setPageSize( _perPage: number): void{
     this.perPage = _perPage;
+  }
+
+  getPaquete(_track: string): Observable<GeneralResponse<Paquete, Pageable>> {
+    const headers: HttpHeaders = new HttpHeaders();
+    return this.http.get<GeneralResponse<Paquete, Pageable>>(
+      `${this.apiUrl}/${_track}`, { headers });
   }
 
 }

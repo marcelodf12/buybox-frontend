@@ -20,4 +20,5 @@ export class Paquete{
   ingreso: Date;
   destino: string;
   sucursalActual: string;
+  casilla?: string;
 }

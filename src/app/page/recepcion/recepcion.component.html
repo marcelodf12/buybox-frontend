@@ -1,1 +1,102 @@
-<p>recepcion works!</p>
+<h1>Recepción</h1>
+<mat-card>
+    <div
+      gdAreas="sucursal track | paquete rastreo | botones botones"
+      gdColumns="30% auto"
+      gdGap = "16px"
+      >
+    <div class="one" gdArea="sucursal" >
+      <!-- AREA DE IZQUIERDA -->
+      <mat-form-field  fxLayout="column"  fxLayoutAlign="stretch">
+        <mat-select [(value)]="idSucursal">
+          <mat-option *ngFor="let s of sucursales" [value]="s.i">
+            {{s.n}}
+          </mat-option>
+        </mat-select>
+        <mat-label>Sucursal Destino</mat-label>
+      </mat-form-field>
+    </div>
+    <div gdArea="track" fxLayout="column"  fxLayoutAlign="stretch">
+      <!-- AREA DERECHA -->
+      <mat-form-field>
+        <mat-label>Tracking Paquete:</mat-label>
+        <input matInput (keyup)="find($event)" name="numeroRastreo" [(ngModel)]="numeroRastreo">
+      </mat-form-field>
+    </div>
+    <div gdArea="paquete" fxLayout="column"  fxLayoutAlign="stretch">
+      <h3>Recepcionar Paquete</h3>
+      <mat-form-field>
+        <mat-label>Tracking paquete</mat-label>
+        <input matInput [readonly]="true" name="numeroTracking" [(ngModel)]="paquete.numeroTracking">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Fecha de ingreso</mat-label>
+        <input matInput [readonly]="true" name="ingreso" [(ngModel)]="paquete.ingreso">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Sucursal de destino</mat-label>
+        <input matInput [readonly]="true" name="destino" [(ngModel)]="paquete.destino">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Sucursal actual</mat-label>
+        <input matInput [readonly]="true" name="sucursalActual" [(ngModel)]="paquete.sucursalActual">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Casilla</mat-label>
+        <input matInput [readonly]="true" name="casilla" [(ngModel)]="paquete.casilla">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Vuelo</mat-label>
+        <input matInput [readonly]="true" name="vuelo" [(ngModel)]="paquete.vuelo">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Descripción</mat-label>
+        <input matInput [readonly]="true" name="descripcion" [(ngModel)]="paquete.descripcion">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Estado</mat-label>
+        <input matInput [readonly]="true" name="idEstado" [(ngModel)]="estado">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Peso (gramos)</mat-label>
+        <input matInput [readonly]="true" name="peso" [(ngModel)]="paquete.peso">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Longitud (cm)</mat-label>
+        <input matInput [readonly]="true" name="longitud" [(ngModel)]="paquete.longitud">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Altura (cm)</mat-label>
+        <input matInput [readonly]="true" name="altura" [(ngModel)]="paquete.altura">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Ancho (cm)</mat-label>
+        <input matInput [readonly]="true" name="ancho" [(ngModel)]="paquete.ancho">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Volumen (cm3)</mat-label>
+        <input matInput [readonly]="true" name="volumen" [(ngModel)]="paquete.volumen">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Valor (USD)</mat-label>
+        <input matInput [readonly]="true" name="precio" [(ngModel)]="paquete.precio">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Monto Total (USD)</mat-label>
+        <input matInput [readonly]="true" name="montoTotal" [(ngModel)]="montoTotal">
+      </mat-form-field>
+    </div>
+    <div gdArea="rastreo" fxLayout="column"  fxLayoutAlign="stretch">
+      <h3>Rastreo</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed imperdiet nec nisl at ultrices. Phasellus faucibus, sapien sed aliquet finibus, magna dolor accumsan dolor, lacinia consequat lorem mauris et urna. Donec pellentesque mi fringilla felis congue, in ultrices quam sodales. Nullam at risus nec quam eleifend sagittis. Vivamus sodales velit nec ex hendrerit pellentesque ac at sapien. Donec dignissim ligula a nisl aliquet auctor. Suspendisse potenti.</p>
+
+      <h3>Notificación</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed imperdiet nec nisl at ultrices. Phasellus faucibus, sapien sed aliquet finibus, magna dolor accumsan dolor, lacinia consequat lorem mauris et urna. Donec pellentesque mi fringilla felis congue, in ultrices quam sodales. Nullam at risus nec quam eleifend sagittis. Vivamus sodales velit nec ex hendrerit pellentesque ac at sapien. Donec dignissim ligula a nisl aliquet auctor. Suspendisse potenti.</p>
+    </div>
+    <div gdArea="botones" fxLayout="row" fxLayoutAlign="end center" >
+      <button mat-button color="primary">Cancelar</button>
+      <button mat-button color="accent">Guardar</button>
+    </div>
+  </div>
+</mat-card>
+<br /><br /><br />

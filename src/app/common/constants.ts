@@ -14,10 +14,25 @@ export class MessagesConst {
       case 4003: return 'El correo electrónico ya ha sido utilizado por otro usuario';
       case 4004: return 'Recurso no encontrado';
       case 4005: return 'El correo proporcionado no existe';
+      case 4006: return 'El paquete no existe';
 
       case 9999: return 'Ah ocurrido un error inesperado. Favor intente más tarde';
       case -1: return 'Usuario y/o Contraseña incorrecto';
+      case -2: return 'No posee permisos para realizar esta operacion';
     }
     return null;
   }
+}
+
+export class PermisosConst {
+  public static clientPermisos: string[] = ['CLIENT'];
+  public static adminPermisos: string[] = [
+    'LIST_PAQUETE',
+    'ALTA_PAQUETE',
+    'LIST_CLIENTE',
+    'EDIT_CLIENTE',
+    'DETAIL_PAQUETE',
+    'LIST_SUCURSAL',
+    'MOVE_PAQUETE'
+  ];
 }

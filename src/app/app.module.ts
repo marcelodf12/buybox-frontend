@@ -60,6 +60,7 @@ import {SegmentoMapper} from './common/mappers/segmento.mapper';
 import {SucursalMapper} from './common/mappers/sucursal.mapper';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {ColorSnackbarMapper} from './common/mappers/color-snackbar.mapper';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -115,7 +116,8 @@ import {ColorSnackbarMapper} from './common/mappers/color-snackbar.mapper';
     ReactiveFormsModule,
     MatDialogModule,
     MatSelectModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatGridListModule
   ],
   providers: [
     LoginService,

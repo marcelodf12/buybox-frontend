@@ -5,7 +5,7 @@ import {catchError, tap} from 'rxjs/operators';
 import {NGXLogger} from 'ngx-logger';
 import {GeneralResponse} from '../models/general-response.model';
 import {LoginService} from '../../services/login.service';
-import {MessagesConst} from '../constants';
+import {MessagesConst, PermisosConst} from '../constants';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {ColorSnackbarMapper} from '../mappers/color-snackbar.mapper';
 
@@ -62,8 +62,11 @@ export class AuthInterceptor implements HttpInterceptor {
   private handleError(status: number, response: GeneralResponse<any, any>): void{
     this.logger.debug('Status code=' + status);
     if (status === 403){
-      localStorage.removeItem('Authorization');
-      this.loginService.salir();
+      if (!this.loginService.isAdmin()){
+        localStorage.removeItem('Authorization');
+        this.loginService.salir();
+      }
+      this.presentToast(-2, 'danger');
     }
     if (!!response && !!response.header && response.header.show && response.header.type === 'toast'){
       this.presentToast(response.header.code, response.header.level);
