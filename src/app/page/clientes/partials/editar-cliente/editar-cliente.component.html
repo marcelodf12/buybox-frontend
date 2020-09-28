@@ -8,27 +8,27 @@
     </mat-form-field>
     <mat-form-field>
       <mat-label>Apellido:</mat-label>
-      <input matInput name="nombre" [(ngModel)]="cliente.apellido">
+      <input matInput name="apellido" [(ngModel)]="cliente.apellido">
     </mat-form-field>
     <mat-form-field>
       <mat-label>Correo:</mat-label>
-      <input matInput name="nombre" [(ngModel)]="cliente.correo" readonly="true">
+      <input matInput name="correo" [(ngModel)]="cliente.correo" readonly="true">
     </mat-form-field>
     <mat-form-field>
       <mat-label>Celular:</mat-label>
-      <input matInput name="nombre" [(ngModel)]="cliente.celular">
+      <input matInput name="celular" [(ngModel)]="cliente.celular">
     </mat-form-field>
     <mat-form-field>
       <mat-label>Dirección:</mat-label>
-      <input matInput name="nombre" [(ngModel)]="cliente.direccion">
+      <input matInput name="direccion" [(ngModel)]="cliente.direccion">
     </mat-form-field>
     <mat-form-field>
-      <mat-label>Dirección:</mat-label>
-      <input matInput name="nombre" [(ngModel)]="cliente.ruc">
+      <mat-label>Cédula/Ruc:</mat-label>
+      <input matInput name="ruc" [(ngModel)]="cliente.ruc">
     </mat-form-field>
     <mat-form-field>
-      <mat-label>Dirección:</mat-label>
-      <input matInput name="nombre" [(ngModel)]="cliente.razonSocial">
+      <mat-label>Razón Social:</mat-label>
+      <input matInput name="razonSocial" [(ngModel)]="cliente.razonSocial">
     </mat-form-field>
     <mat-form-field>
       <mat-select [(value)]="cliente.idSucursal">
@@ -36,6 +36,7 @@
           {{s.n}}
         </mat-option>
       </mat-select>
+      <mat-label>Sucursal</mat-label>
     </mat-form-field>
       <mat-form-field>
       <mat-select [(value)]="cliente.idSegmento">
@@ -43,6 +44,7 @@
           {{s.n}}
         </mat-option>
       </mat-select>
+        <mat-label>Segmento</mat-label>
     </mat-form-field>
   </span>
 </div>
