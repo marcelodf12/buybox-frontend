@@ -3,12 +3,12 @@
     <div
       gdAreas="sucursal track | paquete rastreo | botones botones"
       gdColumns="30% auto"
-      gdGap = "16px"
+      gdGap = "25px"
       >
     <div class="one" gdArea="sucursal" >
       <!-- AREA DE IZQUIERDA -->
       <mat-form-field  fxLayout="column"  fxLayoutAlign="stretch">
-        <mat-select [(value)]="idSucursal">
+        <mat-select [(value)]="idSucursal" (valueChange)="setNotificacion()">
           <mat-option *ngFor="let s of sucursales" [value]="s.i">
             {{s.n}}
           </mat-option>
@@ -24,7 +24,7 @@
       </mat-form-field>
     </div>
     <div gdArea="paquete" fxLayout="column"  fxLayoutAlign="stretch">
-      <h3>Recepcionar Paquete</h3>
+      <h2>Recepcionar Paquete</h2>
       <mat-form-field>
         <mat-label>Tracking paquete</mat-label>
         <input matInput [readonly]="true" name="numeroTracking" [(ngModel)]="paquete.numeroTracking">
@@ -87,15 +87,43 @@
       </mat-form-field>
     </div>
     <div gdArea="rastreo" fxLayout="column"  fxLayoutAlign="stretch">
-      <h3>Rastreo</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed imperdiet nec nisl at ultrices. Phasellus faucibus, sapien sed aliquet finibus, magna dolor accumsan dolor, lacinia consequat lorem mauris et urna. Donec pellentesque mi fringilla felis congue, in ultrices quam sodales. Nullam at risus nec quam eleifend sagittis. Vivamus sodales velit nec ex hendrerit pellentesque ac at sapien. Donec dignissim ligula a nisl aliquet auctor. Suspendisse potenti.</p>
+      <h2>Rastreo</h2>
+      <table mat-table [dataSource]="dummySource">
+        <!-- Usuario Column -->
+        <ng-container matColumnDef="usuario">
+          <mat-header-cell *matHeaderCellDef> Usuario </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.usuario}} </mat-cell>
+        </ng-container>
 
-      <h3>Notificación</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed imperdiet nec nisl at ultrices. Phasellus faucibus, sapien sed aliquet finibus, magna dolor accumsan dolor, lacinia consequat lorem mauris et urna. Donec pellentesque mi fringilla felis congue, in ultrices quam sodales. Nullam at risus nec quam eleifend sagittis. Vivamus sodales velit nec ex hendrerit pellentesque ac at sapien. Donec dignissim ligula a nisl aliquet auctor. Suspendisse potenti.</p>
+        <!-- Fecha/Hora Column -->
+        <ng-container matColumnDef="fechaHora">
+          <mat-header-cell *matHeaderCellDef > Fecha/Hora </mat-header-cell>
+          <mat-cell *matCellDef="let element" > {{element.fechaHora|date:'dd/MM/yyyy HH:mm'}} </mat-cell>
+        </ng-container>
+
+        <!-- Destino Column -->
+        <ng-container matColumnDef="sucursal">
+          <mat-header-cell *matHeaderCellDef > Destino </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{sucursalMap.get(element.idSucursal).n}} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </table>
+      <div *ngIf="!!!dummySource || dummySource.length === 0" style="padding: 10px">
+        Realice una busqueda por número de tracking
+      </div><br /><br />
+      <h2>Notificación</h2>
+      <div [style.border]="'1px'" [innerHTML]="notificacionTransporte"></div>
+      <div [style.border]="'1px'" [innerHTML]="notificacionFinal"></div>
     </div>
     <div gdArea="botones" fxLayout="row" fxLayoutAlign="end center" >
       <button mat-button color="primary">Cancelar</button>
-      <button mat-button color="accent">Guardar</button>
+      <button mat-button color="accent"
+              (click)="mover()"
+              [disabled]="!!!this.idSucursal || !!!this.paquete || !!!this.paquete.idSucursalDestino || this.cargando"
+      >Guardar</button>
     </div>
   </div>
 </mat-card>

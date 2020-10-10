@@ -1,7 +1,7 @@
-import {Paquete} from './paquete.model';
+import {PaqueteModel} from './paquete.model';
 
 export class PaqueteImportModel {
   orden: number;
-  p: Paquete;
+  p: PaqueteModel;
   result: number;
 }

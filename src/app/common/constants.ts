@@ -19,6 +19,8 @@ export class MessagesConst {
       case 9999: return 'Ah ocurrido un error inesperado. Favor intente más tarde';
       case -1: return 'Usuario y/o Contraseña incorrecto';
       case -2: return 'No posee permisos para realizar esta operacion';
+      case -3: return 'La sucursal ya se encuentra en la sucursal';
+      case -4: return 'Debe seleccionar una sucursal para recepción';
     }
     return null;
   }

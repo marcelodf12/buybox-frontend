@@ -3,7 +3,7 @@ import {BehaviorSubject, Observable, Subject} from 'rxjs';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {GeneralResponse} from '../common/models/general-response.model';
 import {Pageable} from '../common/models/pageable.model';
-import {Paquete} from '../common/models/paquete.model';
+import {PaqueteModel} from '../common/models/paquete.model';
 import {environment} from '../../environments/environment';
 import {NGXLogger} from 'ngx-logger';
 import * as StringUtil from 'utils-string';
@@ -18,8 +18,8 @@ import {PaqueteImportModel} from '../common/models/paquete-import.model';
 export class PaqueteService{
 
   private apiUrl: string = environment.apiUrl + 'api/v1/paquete';
-  paquetes: BehaviorSubject<GeneralResponse<Paquete[], Pageable>>
-    = new BehaviorSubject<GeneralResponse<Paquete[], Pageable>>(new GeneralResponse<Paquete[], Pageable>());
+  paquetes: BehaviorSubject<GeneralResponse<PaqueteModel[], Pageable>>
+    = new BehaviorSubject<GeneralResponse<PaqueteModel[], Pageable>>(new GeneralResponse<PaqueteModel[], Pageable>());
 
   private cliente: string;
   private numeroTracking: string;
@@ -30,13 +30,15 @@ export class PaqueteService{
   private desde: string;
   private idSucursal: number;
   private vuelo: string;
+  private actual: string;
+  private destino: string;
   private perPage: number;
 
   constructor(
     private http: HttpClient,
     private logger: NGXLogger,
   ) {
-
+    this.vuelo = '';
   }
 
   getPaquetes(
@@ -54,16 +56,18 @@ export class PaqueteService{
     params = params.append('desde', this.desde);
     params = params.append('casilla', this.casilla);
     params = params.append('vuelo', this.vuelo);
+    params = params.append('actual', this.actual);
+    params = params.append('destino', this.destino);
     params = params.append('numeroTracking', this.numeroTracking);
     params = params.append('codigoExterno', this.codigoExterno);
     params = params.append('codigoInterno', this.codigoInterno);
     params = params.append('cliente', this.cliente);
-    this.http.get<GeneralResponse<Array<Paquete>, Pageable>>(
+    this.http.get<GeneralResponse<Array<PaqueteModel>, Pageable>>(
       `${this.apiUrl}`, { headers, params }).subscribe(
         value => {
           this.paquetes.next(value);
         }, error => {
-          this.paquetes.next(new GeneralResponse<Paquete[], Pageable>());
+          this.paquetes.next(new GeneralResponse<PaqueteModel[], Pageable>());
       }
     );
   }
@@ -84,7 +88,8 @@ export class PaqueteService{
     _hasta: string,
     _desde: string,
     _idSucursal: number,
-    _vuelo: string,
+    _actual: string,
+    _destino: string,
     _perPage?: number,
   ): void {
       const desdeStr: string = !!_desde ? moment(_desde, 'yyyy-MM-DDThh:mm:ss.sssZ').format('yyyy-MM-DD') : '';
@@ -97,7 +102,8 @@ export class PaqueteService{
       this.hasta = hastaStr;
       this.desde = desdeStr;
       this.idSucursal = _idSucursal;
-      this.vuelo = StringUtil.trimToEmpty(_vuelo);
+      this.actual = StringUtil.trimToEmpty(_actual);
+      this.destino = StringUtil.trimToEmpty(_destino);
       if (!!_perPage) {
         this.perPage = _perPage;
       }
@@ -107,10 +113,16 @@ export class PaqueteService{
     this.perPage = _perPage;
   }
 
-  getPaquete(_track: string): Observable<GeneralResponse<Paquete, Pageable>> {
+  getPaquete(_track: string): Observable<GeneralResponse<PaqueteModel, Pageable>> {
     const headers: HttpHeaders = new HttpHeaders();
-    return this.http.get<GeneralResponse<Paquete, Pageable>>(
+    return this.http.get<GeneralResponse<PaqueteModel, Pageable>>(
       `${this.apiUrl}/${_track}`, { headers });
   }
 
+  moverPaquete(_idPaquete: number, _idSucursal: number): Observable<GeneralResponse<PaqueteModel, any>>{
+    const headers: HttpHeaders = new HttpHeaders();
+    const params = new HttpParams();
+    return this.http.put<GeneralResponse<PaqueteModel, any>>(
+      `${this.apiUrl}/${_idPaquete}/move/${_idSucursal}`, null, { headers, params });
+  }
 }

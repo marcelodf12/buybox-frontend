@@ -22,6 +22,7 @@ export class BuscarPaqueteComponent implements OnInit {
       casilla: new FormControl(),
       vuelo: new FormControl(),
       destino: new FormControl(),
+      actual: new FormControl(),
       cliente: new FormControl(),
       trackPaquete: new FormControl()
     });
@@ -41,7 +42,8 @@ export class BuscarPaqueteComponent implements OnInit {
       this.filtro.get('ingresoHasta').value,
       this.filtro.get('ingresoDesde').value,
       null,
-      this.filtro.get('vuelo').value,
+      this.filtro.get('actual').value,
+      this.filtro.get('destino').value,
     );
     this.paqueteService.getPaquetes(
       0,

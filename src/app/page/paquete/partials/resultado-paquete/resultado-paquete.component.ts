@@ -3,7 +3,7 @@ import {Producto} from '../../../../interface/producto.interface';
 import {NGXLogger} from 'ngx-logger';
 import {PAGE_SIZE_OPTIONS} from '../../../../common/constants';
 import {PaqueteService} from '../../../../services/paquete.service';
-import {Paquete} from '../../../../common/models/paquete.model';
+import {PaqueteModel} from '../../../../common/models/paquete.model';
 import {MatPaginator, PageEvent} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 
@@ -14,10 +14,10 @@ import {MatTableDataSource} from '@angular/material/table';
 })
 export class ResultadoPaqueteComponent implements OnInit, AfterViewInit  {
 
-  dummySource: Paquete[];
+  dummySource: PaqueteModel[];
   displayedColumns: string[];
   pageSizeOptions: number[] = PAGE_SIZE_OPTIONS;
-  matdatasource: MatTableDataSource<Paquete>;
+  matdatasource: MatTableDataSource<PaqueteModel>;
   total: number;
   pageNumber: number;
 
@@ -44,6 +44,7 @@ export class ResultadoPaqueteComponent implements OnInit, AfterViewInit  {
       null,
       null,
       '',
+      '',
       this.pageSize);
     this.paqueteService.getPaquetes(
       0,
@@ -59,7 +60,7 @@ export class ResultadoPaqueteComponent implements OnInit, AfterViewInit  {
         // this.dummySource = this.matdatasource.filteredData;
       }
     });
-    this.displayedColumns = ['casilla', 'clienteNombreApellido', 'numeroTracking', 'codigoExterno', 'ingreso', 'destino'];
+    this.displayedColumns = ['casilla', 'clienteNombreApellido', 'numeroTracking', 'ingreso', 'actual', 'destino'];
   }
 
 

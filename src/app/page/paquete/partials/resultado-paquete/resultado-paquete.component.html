@@ -22,11 +22,11 @@
         <mat-cell *matCellDef="let element"> {{element.numeroTracking}} </mat-cell>
       </ng-container>
 
-      <!-- trackProveedor Column -->
+      <!-- trackProveedor Column ->
       <ng-container matColumnDef="codigoExterno">
         <mat-header-cell *matHeaderCellDef> Tracking Proveedor </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.codigoExterno}} </mat-cell>
-      </ng-container>
+      </ng-container-->
 
       <!-- ingreso Column -->
       <ng-container matColumnDef="ingreso">
@@ -35,8 +35,14 @@
       </ng-container>
 
       <!-- destino Column -->
+      <ng-container matColumnDef="actual">
+        <mat-header-cell *matHeaderCellDef> Sucursal Actual </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.sucursalActual}} </mat-cell>
+      </ng-container>
+
+      <!-- destino Column -->
       <ng-container matColumnDef="destino">
-        <mat-header-cell *matHeaderCellDef> Destino </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef> Sucursal Destino </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.destino}} </mat-cell>
       </ng-container>
 

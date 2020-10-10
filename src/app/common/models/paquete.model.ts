@@ -1,4 +1,6 @@
-export class Paquete{
+import {RastreoModel} from './rastreo.model';
+
+export class PaqueteModel{
   idPaquete: number;
   numeroTracking: string;
   vuelo: string;
@@ -19,6 +21,9 @@ export class Paquete{
   idEstado: number;
   ingreso: Date;
   destino: string;
+  idSucursalDestino: number;
   sucursalActual: string;
+  idSucursalActual: number;
   casilla?: string;
+  rastreo?: RastreoModel[];
 }

@@ -22,6 +22,10 @@ export interface Sucursal {
     iB?: any;
     lt: number;
     ln: number;
+    m: string;
+    mf: string;
+    bm: number;
+    bmf: number;
 }
 
 export interface Ciudad {
