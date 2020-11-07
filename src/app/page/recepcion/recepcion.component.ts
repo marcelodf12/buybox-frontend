@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {ConfigurationService} from '../../services/configuration.service';
 import {NGXLogger} from 'ngx-logger';
 import {Estado, Sucursal} from '../../common/models/configuration.model';
@@ -11,6 +11,7 @@ import {MessagesConst} from '../../common/constants';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {ColorSnackbarMapper} from '../../common/mappers/color-snackbar.mapper';
 import {ActivatedRoute, Router} from '@angular/router';
+declare var google;
 
 @Component({
   selector: 'app-recepcion',
@@ -31,6 +32,9 @@ export class RecepcionComponent implements OnInit {
   notificacionTransporte: string;
   notificacionFinal: string;
   cargando: boolean;
+  public map;
+  public marker;
+  @ViewChild('mapElement') mapElement;
 
   constructor(
     public config: ConfigurationService,
@@ -78,6 +82,7 @@ export class RecepcionComponent implements OnInit {
         this.montoTotal = this.paquete.montoTotal / 100;
         this.dummySource = this.paquete.rastreo.sort((a, b) => new Date(a.fechaHora).getTime() - new Date(b.fechaHora).getTime());
         this.setNotificacion();
+        this.mostrarMapa();
       },
       error => {
         this.paquete = new PaqueteModel();
@@ -136,5 +141,23 @@ export class RecepcionComponent implements OnInit {
       });
     }
 
+  }
+
+  mostrarMapa(){
+    const geo = {lng: this.paquete.lng, lat: this.paquete.lat};
+    this.map = new google.maps.Map(
+      this.mapElement.nativeElement,
+      {
+        center: geo,
+        zoom: 15
+      });
+    const map = this.map;
+    this.marker = new google.maps.Marker({
+      position: geo,
+      map,
+      draggable: false,
+      animation: google.maps.Animation.DROP,
+      title: "Cliente",
+    });
   }
 }

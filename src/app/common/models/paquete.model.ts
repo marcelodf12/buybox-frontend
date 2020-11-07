@@ -26,4 +26,7 @@ export class PaqueteModel{
   idSucursalActual: number;
   casilla?: string;
   rastreo?: RastreoModel[];
+  delivery?: number;
+  lng?: number;
+  lat?: number;
 }
