@@ -15,6 +15,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [PrivateGuard]},
   { path: 'login', component: HomeComponent, canActivate: [PublicGuard]},
   { path: 'recepcion', component: RecepcionComponent, canActivate: [PrivateGuard] },
+  { path: 'recepcion/:track', component: RecepcionComponent, canActivate: [PrivateGuard] },
   { path: 'paquetes', component: PaqueteComponent, canActivate: [PrivateGuard] },
   { path: 'clientes', component: ClientesComponent, canActivate: [PrivateGuard] },
   { path: 'productos', component: ProductosComponent, canActivate: [PrivateGuard] },

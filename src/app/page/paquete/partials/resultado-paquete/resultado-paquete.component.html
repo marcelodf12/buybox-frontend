@@ -36,14 +36,24 @@
 
       <!-- destino Column -->
       <ng-container matColumnDef="actual">
-        <mat-header-cell *matHeaderCellDef> Sucursal Actual </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.sucursalActual}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef [ngClass]="'w-200'"> Sucursal Actual </mat-header-cell>
+        <mat-cell *matCellDef="let element" [ngClass]="'w-200'"> {{element.sucursalActual}} </mat-cell>
       </ng-container>
 
       <!-- destino Column -->
       <ng-container matColumnDef="destino">
-        <mat-header-cell *matHeaderCellDef> Sucursal Destino </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.destino}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef [ngClass]="'w-200'"> Sucursal Destino </mat-header-cell>
+        <mat-cell *matCellDef="let element" [ngClass]="'w-200'"> {{element.destino}} </mat-cell>
+      </ng-container>
+
+      <!-- destino Column -->
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef [ngClass]="'w-25'"> Acciones </mat-header-cell>
+        <mat-cell *matCellDef="let element" [ngClass]="'w-25'">
+          <button mat-icon-button color="accent" aria-label="Recepción" [routerLink]="['/recepcion', element.numeroTracking]">
+            <mat-icon>local_shipping</mat-icon>
+          </button>
+        </mat-cell>
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

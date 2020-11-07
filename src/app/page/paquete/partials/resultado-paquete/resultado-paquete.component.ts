@@ -60,7 +60,7 @@ export class ResultadoPaqueteComponent implements OnInit, AfterViewInit  {
         // this.dummySource = this.matdatasource.filteredData;
       }
     });
-    this.displayedColumns = ['casilla', 'clienteNombreApellido', 'numeroTracking', 'ingreso', 'actual', 'destino'];
+    this.displayedColumns = ['casilla', 'clienteNombreApellido', 'numeroTracking', 'ingreso', 'actual', 'destino', 'actions'];
   }
 
 

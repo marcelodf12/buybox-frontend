@@ -10,6 +10,7 @@ import {SucursalMapper} from '../../common/mappers/sucursal.mapper';
 import {MessagesConst} from '../../common/constants';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {ColorSnackbarMapper} from '../../common/mappers/color-snackbar.mapper';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-recepcion',
@@ -38,7 +39,8 @@ export class RecepcionComponent implements OnInit {
     private paqueteService: PaqueteService,
     private snackBar: MatSnackBar,
     private colorSnackbarMapper: ColorSnackbarMapper,
-    private logger: NGXLogger
+    private logger: NGXLogger,
+    private route: ActivatedRoute,
   ) {
     this.paquete = new PaqueteModel();
     this.cargando = false;
@@ -52,6 +54,10 @@ export class RecepcionComponent implements OnInit {
     this.estadosMap = this.estadoMapper.estadosMap;
     this.displayedColumns = ['usuario', 'fechaHora', 'sucursal'];
     this.dummySource = [];
+    if (!!this.route.snapshot.params.track){
+      this.numeroRastreo = this.route.snapshot.params.track;
+      this.cargarPaquete();
+    }
   }
 
   find($event: KeyboardEvent): void{

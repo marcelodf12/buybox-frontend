@@ -32,6 +32,10 @@
   position: fixed !important;
 }
 
+.w-25{
+  max-width: 25px;
+}
+
 .w-50{
   max-width: 50px;
 }
@@ -42,6 +46,10 @@
 
 .w-100{
   max-width: 100px;
+}
+
+.w-200{
+  max-width: 200px;
 }
 
 .md-icon-button + .md-datepicker-input-container {
