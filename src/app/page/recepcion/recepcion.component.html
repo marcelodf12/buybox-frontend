@@ -114,6 +114,12 @@
       <div *ngIf="!!!dummySource || dummySource.length === 0" style="padding: 10px">
         Realice una busqueda por número de tracking
       </div><br /><br />
+      <h2 *ngIf="!!paquete && (!!paquete.autorizadoNombre || !!paquete.autorizadoDocumento)">Autorizado a retirar</h2>
+      <p *ngIf="!!paquete && (!!paquete.autorizadoNombre || !!paquete.autorizadoDocumento)">
+        <strong>Nombre: </strong> {{paquete.autorizadoNombre}}<br>
+        <strong>Documento: </strong> {{paquete.autorizadoDocumento}}
+      </p>
+      <br /><br />
       <h2 *ngIf="!!paquete.lat && !!paquete.lng">El cliente solicitó delivery</h2>
       <div #mapElement [ngClass]="{'map' : !!paquete.lat && !!paquete.lng}"></div>
       <h2>Notificación</h2>
