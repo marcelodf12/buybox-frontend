@@ -62,7 +62,7 @@
         <div [ngxSummernote]="configMenu" formControlName="html" [ngxSummernoteDisabled]="form.get('notificarLlegada').value===false" ></div>
       </div>
       <div class="span3">
-        <mat-slide-toggle color="primary">
+        <mat-slide-toggle color="primary" matTooltip="Info about the action">
           Notificar como destino final
         </mat-slide-toggle>
         <div [ngxSummernote]="configMenu"></div>

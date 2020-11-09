@@ -63,6 +63,7 @@ import {ColorSnackbarMapper} from './common/mappers/color-snackbar.mapper';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {NgxSummernoteModule} from 'ngx-summernote';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -121,7 +122,8 @@ import {NgxSummernoteModule} from 'ngx-summernote';
     MatSnackBarModule,
     MatGridListModule,
     MatSlideToggleModule,
-    NgxSummernoteModule
+    NgxSummernoteModule,
+    MatTooltipModule
   ],
   providers: [
     LoginService,
