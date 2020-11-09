@@ -45,7 +45,7 @@ export class LoginService{
   checkLogin(): void{
     console.log('check session');
     if ( !!localStorage.getItem('Authorization')){
-      this.router.navigate(['/recepcion']);
+      this.router.navigate(['/destinos']);
       this.autenticado.next(true);
     }else{
       this.router.navigate(['/login']);

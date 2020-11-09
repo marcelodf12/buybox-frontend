@@ -1,1 +1,86 @@
-<p>destinos works!</p>
+<mat-card class="container-recepcion">
+  <mat-card-header class="card-header primary">
+    <mat-card-title>Sucursales</mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="card-body container-card-body">
+  <div
+    gdAreas="header header | sucursales detalles | sucursales botones | footer footer"
+    gdColumns="25% auto"
+    gdGap = "0px"
+  >
+    <div id="sucursales" gdArea="sucursales" fxLayout="column" fxFill>
+      <!-- AREA DE IZQUIERDA -->
+      <div class="row-menu" fxLayout="row" fxLayoutAlign="space-between center" >
+        <span>Desposito Miami</span>
+        <button mat-icon-button (click)="gotoDestino(1)"><mat-icon>keyboard_arrow_right</mat-icon></button>
+      </div>
+      <div class="row-menu active" fxLayout="row" fxLayoutAlign="space-between center" >
+        <span>Aduana</span>
+        <button mat-icon-button (click)="gotoDestino(1)"><mat-icon>keyboard_arrow_right</mat-icon></button>
+      </div>
+      <div class="row-menu" fxLayout="row" fxLayoutAlign="space-between center" >
+        <span>Entregado</span>
+        <button mat-icon-button (click)="gotoDestino(1)"><mat-icon>keyboard_arrow_right</mat-icon></button>
+      </div>
+      <div class="row-menu" fxLayout="row" fxLayoutAlign="space-between center" >
+        <span>Nuevo Destino</span>
+        <button mat-icon-button (click)="gotoDestino(1)"><mat-icon>keyboard_arrow_right</mat-icon></button>
+      </div>
+      <br>
+    </div>
+    <div id="detalles" gdArea="detalles">
+      <!-- AREA DERECHA -->
+      <mat-form-field>
+        <mat-label>Nombre de sucursal</mat-label>
+        <input matInput name="name">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select [(value)]="idEstado">
+          <mat-option *ngFor="let e of estados" [value]="e.i">
+            {{e.e}}
+          </mat-option>
+        </mat-select>
+        <mat-label>Estado</mat-label>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Correo delivery</mat-label>
+        <input matInput name="mail">
+      </mat-form-field>
+      <mat-slide-toggle color="primary">
+        Servicio de delivery
+      </mat-slide-toggle>
+      <mat-slide-toggle color="primary">
+        Mostrar al cliente
+      </mat-slide-toggle>
+      <mat-slide-toggle color="primary">
+        Elegible por el cliente
+      </mat-slide-toggle>
+      <div class="span3" [formGroup]="form">
+        <mat-slide-toggle color="primary" formControlName="notificarLlegada">
+          Notificar llegada a destino
+        </mat-slide-toggle>
+        <div [ngxSummernote]="configMenu" formControlName="html" [ngxSummernoteDisabled]="form.get('notificarLlegada').value===false" ></div>
+      </div>
+      <div class="span3">
+        <mat-slide-toggle color="primary">
+          Notificar como destino final
+        </mat-slide-toggle>
+        <div [ngxSummernote]="configMenu"></div>
+      </div>
+    </div>
+    <div id="botones" gdArea="botones" fxLayout="row" fxLayoutAlign="end center" >
+      <button mat-button color="primary">Cancelar</button>
+      <button mat-button color="accent"
+              (click)="gotoDestino(1)"
+      >Guardar</button>
+    </div>
+    <div gdArea="header" fxLayout="row" fxLayoutAlign="end center" >
+      &nbsp;
+    </div>
+    <div gdArea="footer" fxLayout="row" fxLayoutAlign="end center" >
+      &nbsp;
+    </div>
+  </div>
+  </mat-card-content>
+</mat-card>
+<br /><br /><br />

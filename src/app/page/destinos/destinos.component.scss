@@ -1,0 +1,48 @@
+@import "./src/buybox-theming";
+
+.container-recepcion{
+  padding: 0px;
+}
+
+.container-card-body{
+  margin: 0px;
+}
+
+.row-menu {
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+.active {
+  background-color: #ddd;
+}
+
+#detalles {
+
+  padding: 15px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 15px;
+  align-items: center;
+  align-self: start;
+}
+
+#sucursales{
+  border-right: 1px solid #ddd;
+}
+
+.span3{
+  grid-column: auto / span 3;
+  margin-top: 15px;
+}
+
+:host{
+  .NgxEditor{
+    margin-top: 15px;
+  }
+}
+
+#botones {
+  margin-right: 15px;
+}
+

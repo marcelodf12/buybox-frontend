@@ -61,6 +61,8 @@ import {SucursalMapper} from './common/mappers/sucursal.mapper';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {ColorSnackbarMapper} from './common/mappers/color-snackbar.mapper';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {NgxSummernoteModule} from 'ngx-summernote';
 
 @NgModule({
   declarations: [
@@ -117,7 +119,9 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatDialogModule,
     MatSelectModule,
     MatSnackBarModule,
-    MatGridListModule
+    MatGridListModule,
+    MatSlideToggleModule,
+    NgxSummernoteModule
   ],
   providers: [
     LoginService,
