@@ -7,7 +7,6 @@ import {SucursalService} from '../../services/sucursal.service';
 import {SucursalModel} from '../../common/models/sucursal.model';
 import {NGXLogger} from 'ngx-logger';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {MessagesConst} from '../../common/constants';
 import {ColorSnackbarMapper} from '../../common/mappers/color-snackbar.mapper';
 
 declare var $: any;
@@ -66,32 +65,38 @@ export class DestinosComponent implements OnInit {
       name: [null, [Validators.required], []],
       idEstado: [null, [Validators.required], []],
       mail: [null, [Validators.email], []],
-      isDelivery: [null === 1, [Validators.required], []],
-      showClient: [null === 1, [Validators.required], []],
-      isFinal: [null, [Validators.required], []],
-      notificarLlegada: [null, [Validators.required], []],
+      isDelivery: [false, [Validators.required], []],
+      showClient: [false, [Validators.required], []],
+      isFinal: [false, [Validators.required], []],
+      notificarLlegada: [false, [Validators.required], []],
       htmlLlegada: [null, [], []],
-      notificarFinal: [null, [Validators.required], []],
+      notificarFinal: [false, [Validators.required], []],
       htmlFinal: [null, [], []],
     });
   }
 
   setSucursal(): void{
-    const s: SucursalModel = this.sucursales[this.i];
-    this.logger.debug(`Sucursal ${s.nombre} seleccionada`);
-    this.logger.debug(JSON.stringify(s));
-    this.form = this.fb.group({
-      name: [s.nombre, [Validators.required], []],
-      idEstado: [s.idEstadoDefecto, [Validators.required], []],
-      mail: [s.mailDelivery, [Validators.email], []],
-      isDelivery: [s.isDelivery === 1, [Validators.required], []],
-      showClient: [s.rastreable === 1, [Validators.required], []],
-      isFinal: [s.isFinal === 1, [Validators.required], []],
-      notificarLlegada: [s.notificableLlegada === 1, [Validators.required], []],
-      htmlLlegada: [s.mensajeAlCliente, [], []],
-      notificarFinal: [s.notificableFinal === 1, [Validators.required], []],
-      htmlFinal: [s.mensajeAlClienteFinal, [], []],
-    });
+    this.form.reset();
+    if (this.i >= 0 && typeof(this.i) === 'number'){
+      const s: SucursalModel = this.sucursales[this.i];
+      this.logger.debug(`Sucursal ${s.nombre} seleccionada`);
+      this.logger.debug(JSON.stringify(s));
+      this.form.controls['name'].setValue(s.nombre);
+      this.form.controls['idEstado'].setValue(s.idEstadoDefecto);
+      this.form.controls['mail'].setValue(s.mailDelivery);
+      this.form.controls['isDelivery'].setValue(s.isDelivery);
+      this.form.controls['showClient'].setValue(s.rastreable);
+      this.form.controls['isFinal'].setValue(s.isFinal === 1);
+      this.form.controls['notificarLlegada'].setValue(s.notificableLlegada === 1);
+      this.form.controls['htmlLlegada'].setValue(s.mensajeAlCliente);
+      this.form.controls['notificarFinal'].setValue(s.notificableFinal === 1);
+      this.form.controls['htmlFinal'].setValue(s.mensajeAlClienteFinal);
+    }else{
+      this.logger.debug(`Nueva sucursal`);
+      this.form.controls['notificarLlegada'].setValue(false);
+      this.form.controls['notificarFinal'].setValue(false);
+    }
+
   }
 
   ngOnInit(): void {
@@ -121,23 +126,23 @@ export class DestinosComponent implements OnInit {
 
   save(): void {
     if (this.form.valid) {
-      const sucursal: SucursalModel = new SucursalModel();
-      sucursal.idSucursal = this.sucursales[this.i].idSucursal;
-      sucursal.nombre = this.form.get('name').value;
-      sucursal.rastreable = this.form.get('showClient').value ? 0 : 1;
-      sucursal.idEstadoDefecto = this.form.get('idEstado').value;
-      sucursal.notificableLlegada = this.form.get('notificarLlegada').value.value ? 0 : 1;
-      sucursal.notificableFinal = this.form.get('notificarFinal').value.value ? 0 : 1;
-      sucursal.mensajeAlCliente = this.form.get('htmlLlegada').value;
-      sucursal.mensajeAlClienteFinal = this.form.get('htmlFinal').value;
-      sucursal.isFinal = this.form.get('isFinal').value.value ? 0 : 1;
-      sucursal.isDelivery = this.form.get('isDelivery').value.value ? 0 : 1;
-      sucursal.mailDelivery = this.form.get('mail').value;
-      this.sucursalService.edit(sucursal).then(response => {
-        this.sucursales[this.i] = response.body;
-      }).catch(error => {
-        this.logger.error(error);
-      });
+      const sucursal = this.newSucursal();
+      if (this.i >= 0 && typeof(this.i) === 'number') {
+        sucursal.idSucursal = this.sucursales[this.i].idSucursal;
+        this.sucursalService.edit(sucursal).then(response => {
+          this.sucursales[this.i] = response.body;
+        }).catch(error => {
+          this.logger.error(error);
+        });
+      } else {
+        this.sucursalService.create(sucursal).then(response => {
+          this.sucursales.push(response.body);
+          this.i = this.sucursales.length - 1;
+          this.setSucursal();
+        }).catch(error => {
+          this.logger.error(error);
+        });
+      }
     } else {
       this.snackBar.open('Debe completar los campos', null, {
         duration: 2000,
@@ -145,4 +150,20 @@ export class DestinosComponent implements OnInit {
       });
     }
   }
+
+  newSucursal(): SucursalModel {
+    const sucursal: SucursalModel = new SucursalModel();
+    sucursal.nombre = this.form.get('name').value;
+    sucursal.rastreable = this.form.get('showClient').value ? 0 : 1;
+    sucursal.idEstadoDefecto = this.form.get('idEstado').value;
+    sucursal.notificableLlegada = this.form.get('notificarLlegada').value.value ? 0 : 1;
+    sucursal.notificableFinal = this.form.get('notificarFinal').value.value ? 0 : 1;
+    sucursal.mensajeAlCliente = this.form.get('htmlLlegada').value;
+    sucursal.mensajeAlClienteFinal = this.form.get('htmlFinal').value;
+    sucursal.isFinal = this.form.get('isFinal').value.value ? 0 : 1;
+    sucursal.isDelivery = this.form.get('isDelivery').value.value ? 0 : 1;
+    sucursal.mailDelivery = this.form.get('mail').value;
+    return sucursal;
+  }
+
 }

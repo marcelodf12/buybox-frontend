@@ -36,4 +36,11 @@ export class SucursalService {
       `${this.apiUrl}`, _sucursal, { headers, params }).toPromise();
   }
 
+  create(_sucursal: SucursalModel): Promise<GeneralResponse<SucursalModel, any>>  {
+    const headers: HttpHeaders = new HttpHeaders();
+    const params = new HttpParams();
+    return this.http.post<GeneralResponse<SucursalModel, any>>(
+      `${this.apiUrl}`, _sucursal, { headers, params }).toPromise();
+  }
+
 }

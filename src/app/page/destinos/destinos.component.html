@@ -14,9 +14,13 @@
         <span>{{s.nombre}}</span>
         <button mat-icon-button (click)="gotoDestino(a)"><mat-icon>keyboard_arrow_right</mat-icon></button>
       </div>
+      <div [class]="{'row-menu':true, 'active':i==null}" fxLayout="row" fxLayoutAlign="space-between center">
+        <span>Nueva Sucursal</span>
+        <button mat-icon-button (click)="gotoDestino(null)"><mat-icon>keyboard_arrow_right</mat-icon></button>
+      </div>
       <br>
     </div>
-    <div id="detalles" gdArea="detalles" *ngIf="i>=0" [formGroup]="form">
+    <div id="detalles" gdArea="detalles" [formGroup]="form">
       <!-- AREA DERECHA -->
       <mat-form-field>
         <mat-label>Nombre de sucursal</mat-label>
