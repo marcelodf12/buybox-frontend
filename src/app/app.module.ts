@@ -64,6 +64,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {NgxSummernoteModule} from 'ngx-summernote';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {SucursalService} from './services/sucursal.service';
 
 @NgModule({
   declarations: [
@@ -131,6 +132,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatNativeDateModule,
     PaqueteService,
     ClienteService,
+    SucursalService,
     ConfigurationService,
     JwtService,
     EstadoMapper,

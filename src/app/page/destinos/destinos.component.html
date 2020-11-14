@@ -10,32 +10,20 @@
   >
     <div id="sucursales" gdArea="sucursales" fxLayout="column" fxFill>
       <!-- AREA DE IZQUIERDA -->
-      <div class="row-menu" fxLayout="row" fxLayoutAlign="space-between center" >
-        <span>Desposito Miami</span>
-        <button mat-icon-button (click)="gotoDestino(1)"><mat-icon>keyboard_arrow_right</mat-icon></button>
-      </div>
-      <div class="row-menu active" fxLayout="row" fxLayoutAlign="space-between center" >
-        <span>Aduana</span>
-        <button mat-icon-button (click)="gotoDestino(1)"><mat-icon>keyboard_arrow_right</mat-icon></button>
-      </div>
-      <div class="row-menu" fxLayout="row" fxLayoutAlign="space-between center" >
-        <span>Entregado</span>
-        <button mat-icon-button (click)="gotoDestino(1)"><mat-icon>keyboard_arrow_right</mat-icon></button>
-      </div>
-      <div class="row-menu" fxLayout="row" fxLayoutAlign="space-between center" >
-        <span>Nuevo Destino</span>
-        <button mat-icon-button (click)="gotoDestino(1)"><mat-icon>keyboard_arrow_right</mat-icon></button>
+      <div [class]="{'row-menu':true, 'active':a===i}" fxLayout="row" fxLayoutAlign="space-between center" *ngFor="let s of sucursales; let a = index">
+        <span>{{s.nombre}}</span>
+        <button mat-icon-button (click)="gotoDestino(a)"><mat-icon>keyboard_arrow_right</mat-icon></button>
       </div>
       <br>
     </div>
-    <div id="detalles" gdArea="detalles">
+    <div id="detalles" gdArea="detalles" *ngIf="i>=0" [formGroup]="form">
       <!-- AREA DERECHA -->
       <mat-form-field>
         <mat-label>Nombre de sucursal</mat-label>
-        <input matInput name="name">
+        <input matInput name="name" formControlName="name" >
       </mat-form-field>
       <mat-form-field>
-        <mat-select [(value)]="idEstado">
+        <mat-select formControlName="idEstado">
           <mat-option *ngFor="let e of estados" [value]="e.i">
             {{e.e}}
           </mat-option>
@@ -43,36 +31,34 @@
         <mat-label>Estado</mat-label>
       </mat-form-field>
       <mat-form-field>
-        <mat-label>Correo delivery</mat-label>
-        <input matInput name="mail">
+        <mat-label>Correo</mat-label>
+        <input matInput name="mail" formControlName="mail">
       </mat-form-field>
-      <mat-slide-toggle color="primary">
+      <mat-slide-toggle color="primary" formControlName="isDelivery">
         Servicio de delivery
       </mat-slide-toggle>
-      <mat-slide-toggle color="primary">
+      <mat-slide-toggle color="primary" formControlName="showClient">
         Mostrar al cliente
       </mat-slide-toggle>
-      <mat-slide-toggle color="primary">
+      <mat-slide-toggle color="primary" formControlName="isFinal">
         Elegible por el cliente
       </mat-slide-toggle>
-      <div class="span3" [formGroup]="form">
+      <div class="span3">
         <mat-slide-toggle color="primary" formControlName="notificarLlegada">
           Notificar llegada a destino
         </mat-slide-toggle>
-        <div [ngxSummernote]="configMenu" formControlName="html" [ngxSummernoteDisabled]="form.get('notificarLlegada').value===false" ></div>
+        <div [ngxSummernote]="configMenu" formControlName="htmlLlegada" [ngxSummernoteDisabled]="form.get('notificarLlegada').value===false" ></div>
       </div>
       <div class="span3">
-        <mat-slide-toggle color="primary" matTooltip="Info about the action">
+        <mat-slide-toggle color="primary" formControlName="notificarFinal">
           Notificar como destino final
         </mat-slide-toggle>
-        <div [ngxSummernote]="configMenu"></div>
+        <div [ngxSummernote]="configMenu" formControlName="htmlFinal" [ngxSummernoteDisabled]="form.get('notificarFinal').value===false"></div>
       </div>
     </div>
     <div id="botones" gdArea="botones" fxLayout="row" fxLayoutAlign="end center" >
-      <button mat-button color="primary">Cancelar</button>
-      <button mat-button color="accent"
-              (click)="gotoDestino(1)"
-      >Guardar</button>
+      <button mat-button color="primary" (click)="setSucursal()">Cancelar</button>
+      <button mat-button color="accent" (click)="save()">Guardar</button>
     </div>
     <div gdArea="header" fxLayout="row" fxLayoutAlign="end center" >
       &nbsp;
