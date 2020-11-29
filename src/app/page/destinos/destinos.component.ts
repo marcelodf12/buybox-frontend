@@ -34,11 +34,11 @@ export class DestinosComponent implements OnInit {
     ],
     fontNames: ['Helvetica', 'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Roboto', 'Times'],
     buttons: {
-      sucursalBtn: this.customButton('Sucursal', '##SUCURSAL##'),
-      rastreoBtn: this.customButton('Track', '##RASTREO##'),
-      descriptionBtn: this.customButton('Descripción', '##DESCRIPCION##'),
-      pesoBtn: this.customButton('Peso', '##PESO##'),
-      precioBtn: this.customButton('Precio', '##PRECIO##')
+      sucursalBtn: this.customButton('Sucursal', '%{SUCURSAL}'),
+      rastreoBtn: this.customButton('Rastreo', '%{RASTREO}'),
+      descriptionBtn: this.customButton('Descripción', '%{DESCRIPCION}'),
+      pesoBtn: this.customButton('Peso', '%{PESO}'),
+      precioBtn: this.customButton('Precio', '%{PRECIO}')
     }
   };
   sucursales: Array<SucursalModel>;

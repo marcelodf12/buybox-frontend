@@ -109,11 +109,11 @@ export class RecepcionComponent implements OnInit {
   }
 
   replaceTextNotificacion(text: string, sucursalEntity: Sucursal): string{
-    text = text.replace('##SUCURSAL##', sucursalEntity.n);
-    text = text.replace('##RASTREO##', this.paquete.numeroTracking);
-    text = text.replace('##DESCRIPCION##', this.paquete.descripcion);
-    text = text.replace('##PESO##', (this.paquete.peso / 1000).toFixed(2));
-    text = text.replace('##PRECIO##', (this.paquete.montoTotal / 100).toFixed(2));
+    text = text.replace('%{SUCURSAL}', sucursalEntity.n);
+    text = text.replace('%{RASTREO}', this.paquete.numeroTracking);
+    text = text.replace('%{DESCRIPCION}', this.paquete.descripcion);
+    text = text.replace('%{PESO}', (this.paquete.peso / 1000).toFixed(2));
+    text = text.replace('%{PRECIO}', (this.paquete.montoTotal / 100).toFixed(2));
     return text;
   }
 
