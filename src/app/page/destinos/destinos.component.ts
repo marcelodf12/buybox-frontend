@@ -95,6 +95,9 @@ export class DestinosComponent implements OnInit {
       this.logger.debug(`Nueva sucursal`);
       this.form.controls['notificarLlegada'].setValue(false);
       this.form.controls['notificarFinal'].setValue(false);
+      this.form.controls['isDelivery'].setValue(false);
+      this.form.controls['showClient'].setValue(false);
+      this.form.controls['isFinal'].setValue(false);
     }
 
   }
@@ -154,15 +157,16 @@ export class DestinosComponent implements OnInit {
   newSucursal(): SucursalModel {
     const sucursal: SucursalModel = new SucursalModel();
     sucursal.nombre = this.form.get('name').value;
-    sucursal.rastreable = this.form.get('showClient').value ? 0 : 1;
+    sucursal.rastreable = this.form.get('showClient').value ? 1 : 0;
     sucursal.idEstadoDefecto = this.form.get('idEstado').value;
-    sucursal.notificableLlegada = this.form.get('notificarLlegada').value.value ? 0 : 1;
-    sucursal.notificableFinal = this.form.get('notificarFinal').value.value ? 0 : 1;
+    sucursal.notificableLlegada = this.form.get('notificarLlegada').value ? 1 : 0;
+    sucursal.notificableFinal = this.form.get('notificarFinal').value ? 1 : 0;
     sucursal.mensajeAlCliente = this.form.get('htmlLlegada').value;
     sucursal.mensajeAlClienteFinal = this.form.get('htmlFinal').value;
-    sucursal.isFinal = this.form.get('isFinal').value.value ? 0 : 1;
-    sucursal.isDelivery = this.form.get('isDelivery').value.value ? 0 : 1;
+    sucursal.isFinal = this.form.get('isFinal').value ? 1 : 0;
+    sucursal.isDelivery = this.form.get('isDelivery').value ? 1 : 0;
     sucursal.mailDelivery = this.form.get('mail').value;
+    this.logger.debug(JSON.stringify(sucursal));
     return sucursal;
   }
 
