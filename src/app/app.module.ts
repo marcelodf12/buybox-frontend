@@ -65,6 +65,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {NgxSummernoteModule} from 'ngx-summernote';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {SucursalService} from './services/sucursal.service';
+import {ReporteService} from './services/reporte.service';
 
 @NgModule({
   declarations: [
@@ -133,6 +134,7 @@ import {SucursalService} from './services/sucursal.service';
     PaqueteService,
     ClienteService,
     SucursalService,
+    ReporteService,
     ConfigurationService,
     JwtService,
     EstadoMapper,

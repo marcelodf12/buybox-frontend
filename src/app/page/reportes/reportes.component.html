@@ -1,1 +1,41 @@
-<p>reportes works!</p>
+<mat-card class="card">
+  <mat-card-header class="card-header primary">
+    <mat-card-title>Reportes</mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="card-body">
+    <form [formGroup]="filtro">
+      <span fxFill fxLayout="row" fxLayoutAlign="space-between center">
+        <mat-form-field  fxFlex="24" >
+          <mat-select formControlName="dimension">
+            <mat-option *ngFor="let s of dimensiones" [value]="s.k">
+              {{s.v}}
+            </mat-option>
+          </mat-select>
+          <mat-label>Dimensión</mat-label>
+        </mat-form-field>
+
+        <mat-form-field fxFlex="24" appearance="fill" class="white-background">
+          <mat-label>Rago de Fecha</mat-label>
+          <mat-date-range-input [rangePicker]="picker">
+            <input matStartDate placeholder="Desde" formControlName="ingresoDesde">
+            <input matEndDate placeholder="Hasta" formControlName="ingresoHasta">
+          </mat-date-range-input>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field>
+
+        <button fxFlex="24" mat-raised-button (click)="graficar()" class="btn-buscar" color="primary" [disabled]="filtro.invalid">Graficar</button>
+
+      </span>
+
+      <div fxFill fxLayout="row">
+        <canvas id="reportChart" class="reportChart"></canvas>
+      </div>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+  </mat-card-actions>
+</mat-card>
+
+
+
