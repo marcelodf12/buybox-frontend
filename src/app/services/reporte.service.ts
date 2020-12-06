@@ -31,4 +31,17 @@ export class ReporteService {
       `${this.apiUrl}`, { headers, params }).toPromise();
   }
 
+  getToken(): Promise<GeneralResponse<string, any>> {
+    const headers: HttpHeaders = new HttpHeaders();
+    const params = new HttpParams();
+    return this.http.get<GeneralResponse<string, any>>(
+      `${this.apiUrl}/auth`, { headers, params }).toPromise();
+  }
+
+  getUrlReporteXLS(desde: string,
+                   hasta: string,
+                   token: string): string{
+    return `${environment.apiUrl}public/downloads/reporte/paquetes/resumen.xls?desde=${desde}&hasta=${hasta}&token=${token}`;
+  }
+
 }

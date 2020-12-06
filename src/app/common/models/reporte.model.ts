@@ -3,6 +3,6 @@ export class ReporteModel {
   precio: number;
   volumen: number;
   fecha: Date;
-  idEstado: number;
-  idSegmento: number;
+  estado: string;
+  segmento: string;
 }

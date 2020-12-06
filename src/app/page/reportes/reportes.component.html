@@ -14,6 +14,15 @@
           <mat-label>Dimensión</mat-label>
         </mat-form-field>
 
+        <mat-form-field  fxFlex="24" >
+          <mat-select formControlName="agrupador">
+            <mat-option *ngFor="let s of agrupadores" [value]="s.k">
+              {{s.v}}
+            </mat-option>
+          </mat-select>
+          <mat-label>Dividir por</mat-label>
+        </mat-form-field>
+
         <mat-form-field fxFlex="24" appearance="fill" class="white-background">
           <mat-label>Rago de Fecha</mat-label>
           <mat-date-range-input [rangePicker]="picker">
@@ -25,17 +34,22 @@
         </mat-form-field>
 
         <button fxFlex="24" mat-raised-button (click)="graficar()" class="btn-buscar" color="primary" [disabled]="filtro.invalid">Graficar</button>
-
       </span>
 
-      <div fxFill fxLayout="row">
-        <canvas id="reportChart" class="reportChart"></canvas>
+      <div fxFill fxLayout="row" class="reportChart" fxLayoutAlign="center center" >
+        <canvas id="reportChart"></canvas>
       </div>
+
     </form>
   </mat-card-content>
   <mat-card-actions>
   </mat-card-actions>
 </mat-card>
 
+<eco-fab-speed-dial class="fab">
+  <eco-fab-speed-dial-trigger>
+    <button mat-fab (click)="doAction('trigger')" [disabled]="!!!currentEndDate || !!!currentStartDate"><mat-icon>download</mat-icon></button>
+  </eco-fab-speed-dial-trigger>
+</eco-fab-speed-dial>
 
 
