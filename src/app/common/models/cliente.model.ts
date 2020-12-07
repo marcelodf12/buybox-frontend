@@ -16,4 +16,5 @@ export class ClienteModel {
     casilla: string;
     idSucursal?: number;
     idSegmento?: number;
+    roles?: string[];
 }

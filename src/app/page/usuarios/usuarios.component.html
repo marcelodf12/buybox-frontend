@@ -1,1 +1,55 @@
-<p>usuarios works!</p>
+<mat-card class="card">
+  <mat-card-header class="card-header primary">
+    <mat-card-title>Usuarios</mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="card-body">
+    <table mat-table fxFill [dataSource]="dummySource">
+
+      <!-- correo Column -->
+      <ng-container matColumnDef="correo">
+        <mat-header-cell *matHeaderCellDef [ngClass]="'w-250'"> Nombre Usuario </mat-header-cell>
+        <mat-cell *matCellDef="let element" [ngClass]="'w-250'"> {{element.correo}} </mat-cell>
+      </ng-container>
+
+      <!-- clienteNombreApellido Column -->
+      <ng-container matColumnDef="clienteNombreApellido">
+        <mat-header-cell *matHeaderCellDef [ngClass]="'w-250'"> Cliente </mat-header-cell>
+        <mat-cell *matCellDef="let element" [ngClass]="'w-250'"> {{element.apellido}}, {{element.nombre}} </mat-cell>
+      </ng-container>
+
+      <!-- cedula Column -->
+      <ng-container matColumnDef="roles">
+        <mat-header-cell *matHeaderCellDef> Roles </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.roles.join(', ')}} </mat-cell>
+      </ng-container>
+
+      <!-- acciones Column -->
+      <ng-container matColumnDef="acciones">
+        <mat-header-cell *matHeaderCellDef [ngClass]="'w-50'"> Acciones </mat-header-cell>
+        <mat-cell *matCellDef="let element" [ngClass]="'w-50'">
+          <button mat-icon-button color="accent" aria-label="Editar" (click)="editar(element)">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">Su búsqueda no arrojó resultados</td>
+      </tr>
+
+    </table>
+    <div *ngIf="!!!dummySource || dummySource.length === 0" style="padding: 10px">
+      Su busqueda no arrojó resultados
+    </div>
+    <mat-paginator [pageSize]="pageSize" [pageIndex]="pageNumber" [pageSizeOptions]="pageSizeOptions" showFirstLastButtons [length]="total" (page)="changePage($event)"></mat-paginator>
+
+  </mat-card-content>
+  <mat-card-actions>
+
+  </mat-card-actions>
+</mat-card>
+
