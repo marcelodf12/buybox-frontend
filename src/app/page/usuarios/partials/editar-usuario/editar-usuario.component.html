@@ -1,0 +1,50 @@
+<h1 mat-dialog-title>{{title}}</h1>
+<div mat-dialog-content>
+  <span fxFill fxLayout="column" >
+    <mat-form-field *ngIf="nuevo">
+      <mat-label>Nombre de Usuario:</mat-label>
+      <input matInput name="correo" [(ngModel)]="usuario.correo">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Nombre:</mat-label>
+      <input matInput name="nombre" required [(ngModel)]="usuario.nombre">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Apellido:</mat-label>
+      <input matInput name="apellido" required [(ngModel)]="usuario.apellido">
+    </mat-form-field>
+    <mat-slide-toggle color="primary" [(ngModel)]="changePass" *ngIf="!nuevo" style="margin-bottom: 15px">
+        Cambiar contraseña
+    </mat-slide-toggle>
+    <mat-form-field>
+      <mat-label>Contraseña:</mat-label>
+      <input matInput [type]="hide ? 'password' : 'text'" required name="password" [(ngModel)]="usuario.pass" [disabled]="!nuevo && !changePass">
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Ocultar contraseña'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Roles</mat-label>
+      <mat-select [(ngModel)]="usuario.roles" multiple>
+        <mat-option *ngFor="let rol of roles" [value]="rol" [disabled]="rol=='USUARIO'">{{rol}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+        <mat-form-field>
+      <mat-label>Estado</mat-label>
+      <mat-select [(ngModel)]="usuario.activo">
+        <mat-option *ngFor="let estado of estados; let i = index" [value]="i">{{estado}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </span>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button
+    mat-button color="accent"
+    [mat-dialog-close]="true"
+    cdkFocusInitial
+    (click)="save()"
+    [disabled]="!!!usuario.correo || !!!usuario.nombre || !!!usuario.apellido || !(usuario.activo>=0)"
+  >Guardar</button>
+</div>
+

@@ -17,6 +17,11 @@
         <mat-cell *matCellDef="let element" [ngClass]="'w-250'"> {{element.apellido}}, {{element.nombre}} </mat-cell>
       </ng-container>
 
+      <ng-container matColumnDef="estado">
+        <mat-header-cell *matHeaderCellDef [ngClass]="'w-250'"> Estado </mat-header-cell>
+        <mat-cell *matCellDef="let element" [ngClass]="'w-250'"> {{estados[element.activo]}} </mat-cell>
+      </ng-container>
+
       <!-- cedula Column -->
       <ng-container matColumnDef="roles">
         <mat-header-cell *matHeaderCellDef> Roles </mat-header-cell>
@@ -53,3 +58,8 @@
   </mat-card-actions>
 </mat-card>
 
+<eco-fab-speed-dial class="fab">
+  <eco-fab-speed-dial-trigger>
+    <button mat-fab (click)="nuevo()"><mat-icon>add</mat-icon></button>
+  </eco-fab-speed-dial-trigger>
+</eco-fab-speed-dial>

@@ -20,7 +20,7 @@ export class EditarClienteComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public cliente: ClienteModel,
     public config: ConfigurationService,
     private clienteService: ClienteService,
-    private logger: NGXLogger
+    private logger: NGXLogger,
   ) { }
 
   ngOnInit(): void {

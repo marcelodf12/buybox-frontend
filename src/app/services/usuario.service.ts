@@ -34,4 +34,18 @@ export class UsuarioService {
       `${this.apiUrl}`, { headers, params }).toPromise();
   }
 
+  edit(usuario: ClienteModel): Promise<GeneralResponse<ClienteModel, any>> {
+    const headers: HttpHeaders = new HttpHeaders();
+    const params = new HttpParams();
+    return this.http.put<GeneralResponse<ClienteModel, any>>(
+      `${this.apiUrl}/${usuario.idUsuario}`, usuario, { headers, params }).toPromise();
+  }
+
+  nuevo(usuario: ClienteModel): Promise<GeneralResponse<ClienteModel, any>> {
+    this.logger.debug(usuario);
+    const headers: HttpHeaders = new HttpHeaders();
+    const params = new HttpParams();
+    return this.http.post<GeneralResponse<ClienteModel, any>>(
+      `${this.apiUrl}`, usuario, { headers, params }).toPromise();
+  }
 }

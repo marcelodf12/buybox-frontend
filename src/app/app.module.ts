@@ -66,6 +66,7 @@ import {NgxSummernoteModule} from 'ngx-summernote';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {SucursalService} from './services/sucursal.service';
 import {ReporteService} from './services/reporte.service';
+import {EditarUsuarioComponent} from './page/usuarios/partials/editar-usuario/editar-usuario.component';
 
 @NgModule({
   declarations: [
@@ -82,6 +83,7 @@ import {ReporteService} from './services/reporte.service';
     DestinosComponent,
     ReportesComponent,
     UsuariosComponent,
+    EditarUsuarioComponent,
     BuscarPaqueteComponent,
     ResultadoPaqueteComponent,
     ImportarPaquetesComponent,
