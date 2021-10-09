@@ -11,44 +11,44 @@
 
   <h2 matSubheader>Tools</h2-->
   <div fxLayout="row" fxLayoutAlign="space-around center">
-    <img src="./assets/img/buybox.svg" width="250" style="margin-bottom: 15px;" alt="">
+    <img src="./assets/img/tracking2.png" width="250" style="margin-bottom: 15px;" alt="">
   </div>
 
   <mat-divider></mat-divider>
 
   <h2 matSubheader>Menu</h2>
 
-  <a mat-list-item routerLinkActive="list-item-active" routerLink="/recepcion">
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/recepcion" *ngIf="recepcionRole">
     <mat-icon>local_shipping</mat-icon>
     Recepción
   </a>
 
-  <a mat-list-item routerLinkActive="list-item-active" routerLink="/paquetes">
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/paquetes" *ngIf="paquetesRole">
     <mat-icon>widgets</mat-icon>
     Paquete
   </a>
 
-  <a mat-list-item routerLinkActive="list-item-active" routerLink="/clientes">
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/clientes" *ngIf="clientesRole">
     <mat-icon>people</mat-icon>
     Clientes
   </a>
 
-  <a mat-list-item routerLinkActive="list-item-active" routerLink="/productos">
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/productos" *ngIf="productosRole">
     <mat-icon>shopping_basket</mat-icon>
     Productos
   </a>
 
-  <a mat-list-item routerLinkActive="list-item-active" routerLink="/destinos">
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/destinos" *ngIf="destinosRole">
     <mat-icon>alt_route</mat-icon>
     Destinos
   </a>
 
-  <a mat-list-item routerLinkActive="list-item-active" routerLink="/reportes">
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/reportes" *ngIf="reportesRole">
     <mat-icon>timeline</mat-icon>
     Reportes
   </a>
 
-  <a mat-list-item routerLinkActive="list-item-active" routerLink="/usuarios">
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/usuarios" *ngIf="usuariosRole">
     <mat-icon>assignment_ind</mat-icon>
     Usuarios
   </a>

@@ -45,7 +45,7 @@ export class LoginService{
   checkLogin(): void{
     console.log('check session');
     if ( !!localStorage.getItem('Authorization')){
-      this.router.navigate(['/destinos']);
+      this.router.navigate(['/usuarios']);
       this.autenticado.next(true);
     }else{
       this.router.navigate(['/login']);
@@ -78,5 +78,16 @@ export class LoginService{
       }
     }
     return isAdmin;
+  }
+
+  getRoles(): string[]{
+    const token: string = localStorage.getItem('Authorization');
+    if (!!token){
+      const isValidToken = this.jwtService.isValidToken(token);
+      if (isValidToken) {
+        return this.jwtService.getPermisos(token);
+      }
+    }
+    return [];
   }
 }
